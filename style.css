@@ -1,0 +1,65 @@
+body {
+  background-color: #D5D5D3;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0
+}
+
+/* Gradient Background */
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #6a11cb;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+}
+
+/* Card Styles */
+.card {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 12px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 30px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* Button Customizations */
+.btn-outline-light {
+  font-size: 1.1rem;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.btn-outline-light:hover {
+  background-color: #fff;
+  color: #007bff;
+}
+
+/* Link Styles */
+a {
+  font-size: 0.9rem;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.text-muted {
+  font-size: 0.9rem;
+}
+
+.text-align {
+  text-align: left !important;
+}
+

@@ -73,7 +73,7 @@ VALUES
 ('You wish strength of will for yourself more than strength of emotion.'),
 ('You are more thick-skinned than thin-skinned.'),
 ('You tend to notice disorderliness more than opportunities for change. '),
-('You are more routine than whimsical.'),
+('You are more routine than whimsical.'),     
 
 
 

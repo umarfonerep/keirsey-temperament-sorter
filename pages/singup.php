@@ -36,15 +36,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <section class="vh-100 gradient-custom">
-        <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="card bg-dark text-white text-center" style="border-radius: 1rem;">
-                        <div class="card-body p-5 ">
-                            <?php if (isset($error)): ?>
-                                <p style="color: red;"><?php echo $error; ?></p>
-                            <?php endif; ?>
+    <section class="vh-100 d-flex align-items-center justify-content-center">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-10 col-lg-8"> <!-- Wider form -->
+                    <?php if (isset($error)): ?>
+                        <p style="color: red;"><?php echo $error; ?></p>
+                    <?php endif; ?>
+                    <div class="card bg-color text-white p-5" style="border-radius: 1rem;">
+                        <div class="card-body">
+                            <h2 class="fw-bold text-center">Sign Up</h2>
+                            <p class="text-white-50 text-center">Please enter your details to create an account!</p>
                             <form action="" method="POST">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">

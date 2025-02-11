@@ -1,9 +1,39 @@
 <?php
+ session_start();
+ 
+ require_once '../includes/db.php';
+ require_once '../includes/responces.php';
+ require_once '../includes/auth.php';
+
+
+ if (!isLoggedIn() || $_SESSION['role'] !== 'user' ) {
+    header("Location: ../pages/login.php");
+    exit();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $data = $_POST['q1'];
-    echo $data;
+    $data = [
+        'q1' => $_POST['q1'],
+        'q2' => $_POST['q2'],
+        'q3' => $_POST['q3'],
+        'q4' => $_POST['q4'],
+        'q5' => $_POST['q5'],
+    ];
+
+   
+    $userid = $_SESSION['user_id'];
+    $questionObj = new Responces($conn);
+
+    if ($questionObj->storeResponces($data, $userid)) {
+        echo "Response stored successfully!";
+        header('location: dashboard.php');
+    } else {
+        echo "Failed to store response!";
+    }
+
     die;
 }
+
 
 ?>
 
@@ -35,11 +65,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="text-white fs-5 me-3">1.</span>
                         <label class="form-label text-white fs-5 flex-grow-1">When the phone rings you hurry to get to it first and don't hope someone else gets it.</label>
                         <select class="form-select w-auto" name="q1">
-                            <option value="1">Nah</option>
-                            <option value="2">Not really</option>
-                            <option value="3">Kinda</option>
-                            <option value="4">50/50</option>
-                            <option value="5">Absolutely</option>
+                            <option value="0">Nah</option>
+                            <option value="0">Not really</option>
+                            <option value="0.5">Kinda</option>
+                            <option value="1">50/50</option>
+                            <option value="1">Absolutely</option>
                         </select>
                     </div>
 
@@ -48,11 +78,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="text-white fs-5 me-3">2.</span>
                         <label class="form-label text-white fs-5 flex-grow-1">You are more observant than introspective.</label>
                         <select class="form-select w-auto" name="q2">
-                            <option value="1">Nah</option>
-                            <option value="2">Not really</option>
-                            <option value="3">Kinda</option>
-                            <option value="4">50/50</option>
-                            <option value="5">Absolutely</option>
+                            <option value="0">Nah</option>
+                            <option value="0">Not really</option>
+                            <option value="0.5">Kinda</option>
+                            <option value="1">50/50</option>
+                            <option value="1">Absolutely</option>
                         </select>
                     </div>
 
@@ -61,11 +91,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="text-white fs-5 me-3">3.</span>
                         <label class="form-label text-white fs-5 flex-grow-1">Is it worse to have your head in the clouds than be in a rut.</label>
                         <select class="form-select w-auto" name="q3">
-                            <option value="1">Nah</option>
-                            <option value="2">Not really</option>
-                            <option value="3">Kinda</option>
-                            <option value="4">50/50</option>
-                            <option value="5">Absolutely</option>
+                            < <option value="0">Nah</option>
+                                <option value="0">Not really</option>
+                                <option value="0.5">Kinda</option>
+                                <option value="1">50/50</option>
+                                <option value="1">Absolutely</option>
                         </select>
                     </div>
 
@@ -74,11 +104,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="text-white fs-5 me-3">4.</span>
                         <label class="form-label text-white fs-5 flex-grow-1">I often rely on my feelings when making decisions.</label>
                         <select class="form-select w-auto" name="q4">
-                            <option value="1">Nah</option>
-                            <option value="2">Not really</option>
-                            <option value="3">Kinda</option>
-                            <option value="4">50/50</option>
-                            <option value="5">Absolutely</option>
+                            <option value="0">Nah</option>
+                            <option value="0">Not really</option>
+                            <option value="0.5">Kinda</option>
+                            <option value="1">50/50</option>
+                            <option value="1">Absolutely</option>
                         </select>
                     </div>
 
@@ -87,11 +117,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="text-white fs-5 me-3">5.</span>
                         <label class="form-label text-white fs-5 flex-grow-1">With people you are usually more firm than gentle.</label>
                         <select class="form-select w-auto" name="q5">
-                            <option value="1">Nah</option>
-                            <option value="2">Not really</option>
-                            <option value="3">Kinda</option>
-                            <option value="4">50/50</option>
-                            <option value="5">Absolutely</option>
+                            <option value="0">Nah</option>
+                            <option value="0">Not really</option>
+                            <option value="0.5">Kinda</option>
+                            <option value="1">50/50</option>
+                            <option value="1">Absolutely</option>
                         </select>
                     </div>
                 </div>

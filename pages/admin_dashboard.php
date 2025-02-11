@@ -30,13 +30,13 @@ if (!isLoggedIn() || $_SESSION['role'] !== 'admin') {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="admin_dashboard.html">Home</a>
+                        <a class="nav-link" href="admin_dashboard.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin_questions.html">Questions</a>
+                        <a class="nav-link" href="admin_questions.php">Questions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin_results.html">Results</a>
+                        <a class="nav-link" href="admin_results.php">Results</a>
                     </li>
                 </ul>
             </div>

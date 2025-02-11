@@ -58,7 +58,7 @@ if (!isLoggedIn() || $_SESSION['role'] !== 'user' ) {
     <div class="container">
     <div class="container">
         <h1>Keirsey Temperament Test</h1>
-        <a href="test.html"><button class="btn btn-transparent">Take Test</button> </a>
+        <a href="test.php"><button class="btn btn-transparent">Take Test</button> </a>
         <a href = "#"><button class="btn btn-secondary">Retake Test</button></a>
     </div>
     </div>

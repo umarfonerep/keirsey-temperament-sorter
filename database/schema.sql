@@ -73,7 +73,14 @@ VALUES
 ('You wish strength of will for yourself more than strength of emotion.'),
 ('You are more thick-skinned than thin-skinned.'),
 ('You tend to notice disorderliness more than opportunities for change. '),
-('You are more routine than whimsical.'),     
+('You are more routine than whimsical.'),  
+
+CREATE TABLE RESPONCES (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userid INT NOT NULL,
+    question_responce JSON NOT NULL,
+    FOREIGN KEY (userid) REFERENCES users(id) ON DELETE CASCADE
+)
 
 
 

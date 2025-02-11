@@ -19,26 +19,49 @@ if (!isLoggedIn()) {
     <link href="styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            height: 100vh;
+            background-color: #212529;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .btn {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .btn-transparent {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .btn:hover{
+          background-color: #fff;
+          color: black;
+        }
+    </style>
 </head>
 <body class="gradient-custom d-flex align-items-center justify-content-center vh-100">
 <a href="../includes/logout.php">logout</a>
     <div class="container">
-        <div class="card bg-dark text-white p-5 text-start" style="border-radius: 1rem;">
-            <h1 class="fw-bold text-uppercase">The Keirsey Temperament Questionnaire</h1>
-            <p class="fs-4 mt-3">Discover your temperament and personality traits by taking this simple test.</p>
-            
-            <!-- Take Test Button -->
-            <div class="mt-4">
-                <a href="test.php" class="btn btn-outline-light btn-lg">
-                    Take Test <i class="fas fa-arrow-right ms-2"></i>
-                </a>
-            </div>
-
-            <!-- Retake Button -->
-            <div class="mt-3">
-                <a href="test.html" class="btn btn-outline-light btn-lg">Retake</a>
-            </div>
-        </div>
+    <div class="container">
+        <h1>Keirsey Temperament Test</h1>
+        <a href="test.html"><button class="btn btn-transparent">Take Test</button> </a>
+        <a href = "#"><button class="btn btn-secondary">Retake Test</button></a>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php if (isset($error)): ?>
                         <p style="color: red;"><?php echo $error; ?></p>
                     <?php endif; ?>
-                    <div class="card bg-color text-white p-5" style="border-radius: 1rem;">
+                    <div class="card bg-dark text-white p-5" style="border-radius: 1rem;">
                         <div class="card-body">
                             <h2 class="fw-bold text-center">Sign Up</h2>
                             <p class="text-white-50 text-center">Please enter your details to create an account!</p>
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </div>
                                 <div class="text-center">
                                     <button class="btn btn-outline-light btn-lg px-5 mt-3" type="submit">Sign Up</button>
-                                    <p class="mt-3">Already have an account? <a href="login.html" class="text-white-50 fw-bold">Login</a></p>
+                                    <p class="mt-3">Already have an account? <a href="login.php" class="text-white-50 fw-bold">Login</a></p>
                                 </div>
                             </form>
                         </div>

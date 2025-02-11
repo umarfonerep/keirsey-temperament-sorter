@@ -5,14 +5,14 @@ use PHPMailer\PHPMailer\Exception;
 require '../vendor/autoload.php';
 
 function isLoggedIn() {
-    return isset($_SESSION['user_id']);
+    return isset($_SESSION['user_id'] );
 }
 
-function registerUser($username, $email, $password, $conn) {
+function registerUser($username, $first_name, $last_name, $phone, $email, $password, $conn) {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO users (username, email, password, first_name, last_name, phone ) VALUES (?, ?, ?, ?, ?, ?)");
     if ($stmt) {
-        $stmt->bind_param("sss", $username, $email, $hashedPassword);
+        $stmt->bind_param("ssssss", $username, $email, $hashedPassword, $first_name, $last_name, $phone );
         return $stmt->execute();
     } else {
         return false;
@@ -40,6 +40,7 @@ function loginUser($email, $password, $conn) {
     $user = $result->fetch_assoc();
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
         return true;
     }
 

@@ -8,11 +8,14 @@ if (isLoggedIn()) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['name'];
+    $username = $_POST['username'];
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $phone = $_POST['phone'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    if (registerUser($username, $email, $password, $conn)) {
+    if (registerUser($username, $first_name, $last_name, $phone, $email, $password, $conn)) {
         header("Location: login.php");
         exit();
     } else {
@@ -28,27 +31,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup Page</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <section class="vh-100 d-flex align-items-center justify-content-center">
-        <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-10 col-lg-8"> <!-- Wider form -->
-                    <?php if (isset($error)): ?>
-                        <p style="color: red;"><?php echo $error; ?></p>
-                    <?php endif; ?>
-                    <div class="card bg-color text-white p-5" style="border-radius: 1rem;">
-                        <div class="card-body">
-                            <h2 class="fw-bold text-center">Sign Up</h2>
-                            <p class="text-white-50 text-center">Please enter your details to create an account!</p>
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white text-center" style="border-radius: 1rem;">
+                        <div class="card-body p-5 ">
+                            <?php if (isset($error)): ?>
+                                <p style="color: red;"><?php echo $error; ?></p>
+                            <?php endif; ?>
                             <form action="" method="POST">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label" for="signupUsername">Username*</label>
-                                        <input type="text" id="signupUsername" class="form-control form-control-lg" name="name" required />
+                                        <input type="text" id="signupUsername" class="form-control form-control-lg" name="username" required />
                                         <span class="error"></span>
                                     </div>
                                     <div class="col-md-6 mb-3">
@@ -84,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </div>
                                 <div class="text-center">
                                     <button class="btn btn-outline-light btn-lg px-5 mt-3" type="submit">Sign Up</button>
-                                    <p class="mt-3">Already have an account? <a href="login.html" class="text-white-50 fw-bold">Login</a></p>
+                                    <p class="mt-3">Already have an account? <a href="login.php" class="text-white-50 fw-bold">Login</a></p>
                                 </div>
                             </form>
                         </div>
@@ -93,7 +94,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </section>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
+
+

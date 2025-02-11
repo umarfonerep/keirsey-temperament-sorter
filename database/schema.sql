@@ -1,8 +1,8 @@
-CREATE TABLE Question (
+CREATE TABLE Questions (
     qid INT AUTO_INCREMENT PRIMARY KEY,
     qtext TEXT NOT NULL
 );
-INSERT INTO Question (qtext) 
+INSERT INTO Questions (qtext) 
 VALUES 
 ('When the phone rings you hurry to get to it first and don't hope someone else gets it. '),
 ('You are more observant than introspective.'),

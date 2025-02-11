@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php if (isset($error)): ?>
                         <p style="color: red;"><?php echo $error; ?></p>
                     <?php endif; ?>
-                    <div class="card bg-color text-white p-5" style="border-radius: 1rem;">
+                    <div class="card bg- text-dark white p-5" style="border-radius: 1rem;">
                         <div class="card-body">
                             <h2 class="fw-bold text-center">Sign Up</h2>
                             <p class="text-white-50 text-center">Please enter your details to create an account!</p>

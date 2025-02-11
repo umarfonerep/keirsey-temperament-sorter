@@ -4,15 +4,19 @@ include '../includes/db.php';
 include '../includes/auth.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
 
-    if (loginUser($email, $password, $conn)) {
-        header("Location: dashboard.php");
-        exit();
+  if (loginUser($email, $password, $conn)) {
+    if ($_SESSION['role'] === 'admin') {
+      header("Location: admin_dashboard.php");
     } else {
-        $error = "Invalid email or password.";
+      header("Location: dashboard.php");
     }
+    exit();
+  } else {
+    $error = "Invalid email or password.";
+  }
 }
 ?>
 

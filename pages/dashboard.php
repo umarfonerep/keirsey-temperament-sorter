@@ -1,9 +1,8 @@
 <?php
-
 session_start();
 include '../includes/auth.php';
 
-if (!isLoggedIn()) {
+if (!isLoggedIn() || $_SESSION['role'] !== 'user' ) {
     header("Location: ../pages/login.php");
     exit();
 }

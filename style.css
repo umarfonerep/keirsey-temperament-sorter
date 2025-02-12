@@ -63,3 +63,73 @@ a:hover {
   text-align: left !important;
 }
 
+/* Navbar Styling */
+.navbar {
+  padding: 15px;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-right: 15px;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffcc00;
+}
+
+/* Content Section */
+.container {
+  max-width: 900px;
+}
+
+/* Tables */
+.table {
+  background-color: #f8f9fa;
+}
+
+.table th {
+  background-color: #343a40;
+  color: white;
+}
+
+/* Buttons */
+.btn {
+  font-size: 1rem;
+  padding: 8px 15px;
+}
+
+.btn-warning {
+  background-color: #f39c12;
+  border: none;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  border: none;
+}
+
+.btn-success {
+  background-color: #27ae60;
+  border: none;
+}
+
+/* Form Fields */
+.form-control {
+  font-size: 1rem;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar-nav {
+      text-align: center;
+  }
+}

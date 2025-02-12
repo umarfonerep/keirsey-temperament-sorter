@@ -1,20 +1,9 @@
-<?php
-session_start();
-include '../includes/auth.php';
-
-if (!isLoggedIn() || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
-    exit();
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Manage Questions</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 </head>
@@ -33,7 +22,7 @@ if (!isLoggedIn() || $_SESSION['role'] !== 'admin') {
                         <a class="nav-link" href="admin_dashboard.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin_questions.html">Questions</a>
+                        <a class="nav-link active" href="admin_questions.html">Questions</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="admin_results.html">Results</a>
@@ -43,12 +32,28 @@ if (!isLoggedIn() || $_SESSION['role'] !== 'admin') {
         </div>
     </nav>
 
-    <!-- Content -->
-    <div class="container mt-5 text-center text-white">
-        <h2>Welcome to the Admin Panel</h2>
-        <p>Use the navigation bar to manage the system.</p>
+    <!-- Questions Section -->
+    <div class="container mt-5">
+        <h2 class="text-white">Manage Questions</h2>
+        <table class="table table-bordered table-light mt-3">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" class="form-control" placeholder="Enter question"></td>
+                    <td>
+                        <button class="btn btn-warning">Edit</button>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <a href="../includes/logout.php">logout</a>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

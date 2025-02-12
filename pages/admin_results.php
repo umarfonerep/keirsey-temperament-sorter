@@ -5,28 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Results</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet"> <!-- Custom styles if needed -->
 </head>
 <body>
-
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="admin_dashboard.html">Admin Panel</a>
+    <nav class="navbar navbar-expand-lg navbar-dark" style = "background-color: #1E7AC2;">
+          <div class="container">
+            <a class="navbar-brand" href="#">Admin Panel</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin_dashboard.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin_questions.html">Questions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="admin_results.html">Results</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link text-white" href="admin_dashboard.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="admin_questions.php">Questions</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="admin_results.php">Results</a></li>
                 </ul>
             </div>
         </div>
@@ -34,26 +27,33 @@
 
     <!-- Results Section -->
     <div class="container mt-5">
-        <h2 class="text-white">Results</h2>
-        <form>
-            <div class="mb-3">
-                <label class="form-label text-black">Type</label>
-                <input type="text" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label class="form-label text-">Group</label>
-                <input type="text" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label class="form-label text-white">Aspect</label>
-                <input type="text" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label class="form-label text-white">Description</label>
-                <textarea class="form-control" rows="3"></textarea>
-            </div>
-            <button class="btn btn-success">Save</button>
-        </form>
+        <h2 class="text-center mb-4">Results</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered";>
+                <thead class="table-dark">
+                    <tr style = "background-color: #1E7AC2;">
+                        <th>Type</th>
+                        <th>Group</th>
+                        <th>Aspect</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Extrovert</td>
+                        <td>Social</td>
+                        <td>Leadership</td>
+                        <td>Great at handling social situations.</td>
+                    </tr>
+                    <tr>
+                        <td>Introvert</td>
+                        <td>Reflective</td>
+                        <td>Thoughtful</td>
+                        <td>Prefers deep conversations over small talk.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

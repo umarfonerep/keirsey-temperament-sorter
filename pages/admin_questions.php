@@ -10,22 +10,22 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark"; style = "background-color: #1E7AC2;">
         <div class="container">
-            <a class="navbar-brand" href="admin_dashboard.html">Admin Panel</a>
+            <a class="navbar-brand" href="admin_dashboard.php">Admin Panel</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="admin_dashboard.html">Home</a>
+                        <a class="nav-link text-white" href="admin_dashboard.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="admin_questions.html">Questions</a>
+                        <a class="nav-link text-white" href="admin_questions.php">Questions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin_results.html">Results</a>
+                        <a class="nav-link text-white" href="admin_results.php">Results</a>
                     </li>
                 </ul>
             </div>
@@ -44,7 +44,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="text" class="form-control" placeholder="Enter question"></td>
+                    <td><p>When the phone rings you hurry to get to it first and don't hope someone else gets it. </p></td>
                     <td>
                         <button class="btn btn-warning">Edit</button>
                         <button class="btn btn-danger">Delete</button>

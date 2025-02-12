@@ -4,12 +4,17 @@
  require_once '../includes/db.php';
  require_once '../includes/responces.php';
  require_once '../includes/auth.php';
+ require_once '../includes/question.php';
+
 
 
  if (!isLoggedIn() || $_SESSION['role'] !== 'user' ) {
     header("Location: ../pages/login.php");
     exit();
 }
+
+$questionObj = new Question($conn);
+$questions = $questionObj->getAllQuestions();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = [

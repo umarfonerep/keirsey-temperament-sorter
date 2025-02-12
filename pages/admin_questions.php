@@ -18,7 +18,7 @@
         /* Navbar */
         .navbar {
             background-color: #1E7AC2;
-            padding: 10px 0;
+            padding: 10px 0;nkj
         }
         .navbar-brand img {
             height: 80px;

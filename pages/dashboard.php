@@ -67,6 +67,15 @@
             background-color: #1E7AC2;
             color: white !important;
         }
+        /* Footer */
+        .footer {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -115,6 +124,13 @@
         <a href="test.php"><button class="btn btn-custom bg-color">Take Test</button></a>
         <a href="#"><button class="btn btn-custom">Retake Test</button></a>
     </div>
+
+<!-- footer -->
+    <footer class="footer mt-auto">
+    <div class="container">
+        &copy; 2025 Keirsey Temperament Test. All Rights Reserved.
+    </div>
+</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

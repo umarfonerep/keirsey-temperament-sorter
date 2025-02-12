@@ -85,6 +85,20 @@ a:hover {
 .navbar-nav .nav-link:hover {
   color: #ffcc00;
 }
+.navbar {
+  background-color: #1E7AC2;
+  padding: 10px 0;
+}
+.navbar-brand img {
+  height: 80px; /* Adjust the logo size */
+}
+.navbar .nav-link {
+  color: white !important;
+  font-weight: bold;
+}
+.navbar .nav-link:hover {
+  color: #f8f9fa !important;
+}
 
 /* Content Section */
 .container {
@@ -128,6 +142,15 @@ a:hover {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
+}
+/* Footer Styling */
+.footer {
+  background-color: #f8f9fa;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  width: 100%;
 }
 
 /* Responsive */

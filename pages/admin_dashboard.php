@@ -2,21 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Dashboard - Keirsey Temperament Test</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
-            height: 100vh;
+            height: 80%;
             background-color: white;
             color: black;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
         .navbar {
             background-color: #1E7AC2;
             padding: 10px 0;
+        }
+        .navbar-brand img {
+            height: 80px;
         }
         .navbar .nav-link {
             color: white !important;
@@ -25,39 +26,55 @@
         .navbar .nav-link:hover {
             color: #f8f9fa !important;
         }
-        .navbar .btn-logout {
-            background-color: white;
-            color: black;
-            border: none;
-            padding: 5px 15px;
-            font-weight: bold;
+        .btn-logout {
+            background-color: #F77F2E;
+            color: white;
+            /* border: 2px solid white; */
         }
-        .navbar .btn-logout:hover {
-            background-color: #f8f9fa;
-        }
-        .container-content {
-            max-width: 500px;
-            margin: auto;
-            text-align: center;
-        }
-        .btn {
-            width: 100%;
-            margin-bottom: 15px;
-        }
-        .btn-transparent {
-            background-color: transparent;
-            border: 2px solid black;
-            color: black;
-        }
-        .btn-transparent:hover {
+        .btn-logout:hover {
             background-color: black;
             color: white;
+        }
+        .container-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 79vh;
+        }
+        .btn-custom {
+            width: 200px;
+            margin: 10px;
+            border: 2px solid #1E7AC2;
+            color: black;
+            
+        }
+        .btn-custom:hover {
+            background-color: #F77F2E;
+            color: white;
+        }
+        .bg-color{
+            background-color: #1E7AC2;
+            color: white !important;
+        }
+        .table thead {
+            background-color: #1E7AC2;
+            color: white;
+        }
+        /* Footer */
+        .footer {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
-<!-- Navbar -->
+    <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="#"><img src="../assets/LOGO.png" alt="Logo" height="40"></a>
@@ -74,13 +91,48 @@
     </div>
 </nav>
 
-<!-- Admin Dashboard Content -->
-<div class="container-content mt-5">
-    <h1>Keirsey Temperament Test</h1>
-    <a href="test.php" class="btn btn-transparent">Take Test</a>
-    <button class="btn btn-secondary">Retake Test</button>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Dashboard Content -->
+    <div class="container-content">
+        <h1>Keirsey Temperament Test</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered";>
+                <thead>
+                    <tr style = "background-color: #1E7AC2;">
+                        <th>Type</th>
+                        <th>Group</th>
+                        <th>Aspect</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Extrovert</td>
+                        <td>Social</td>
+                        <td>Leadership</td>
+                        <td>Great at handling social situations.</td>
+                    </tr>
+                    <tr>
+                        <td>Introvert</td>
+                        <td>Reflective</td>
+                        <td>Thoughtful</td>
+                        <td>Prefers deep conversations over small talk.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <a href="test.php"><button class="btn btn-custom bg-color">Take Test</button></a>
+        <a href="#"><button class="btn btn-custom">Retake Test</button></a>
+    </div>
+
+<!-- footer -->
+    <footer class="footer mt-auto">
+    <div class="container">
+        &copy; 2025 Keirsey Temperament Test. All Rights Reserved.
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

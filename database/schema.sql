@@ -4,7 +4,7 @@ CREATE TABLE Questions (
 );
 INSERT INTO Questions (qtext) 
 VALUES 
-('When the phone rings, you hurry to get to it first and don\'t hope someone else gets it.'),
+('When the phone rings, you hurry to get to it first and don\'t hope someone else gets it.,',),
 ('You are more observant than introspective.'),
 ('Is it worse to have your head in the clouds than to be in a rut?'),
 ('With people, you are usually more firm than gentle.'),
@@ -83,5 +83,40 @@ CREATE TABLE RESPONCES (
     FOREIGN KEY (userid) REFERENCES users(id) ON DELETE CASCADE
 )
 
+CREATE TABLE results (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    personality_type VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
+
+
+CREATE TABLE data (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    personality_type VARCHAR(50) NOT NULL,
+    result_group VARCHAR(50) NOT NULL,
+    aspects TEXT NOT NULL,
+    description_links TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO data (personality_type, result_group, aspects, description_links)
+VALUES
+('ENFJ', 'Idealists', 'The Teacher', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=3&c=teacher'),
+('ENFP', 'Idealists', 'The Champion', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=3&c=champion'),
+('ENTJ', 'Rationals', 'The Fieldmarshal', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=5&c=fieldmarshal'),
+('ENTP', 'Rationals', 'The Inventor', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=5&c=inventor'),
+('ESFJ', 'Guardians', 'The Provider', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=2&c=provider'),
+('ESFP', 'Artisans', 'The Performer', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=4&c=performer'),
+('ESTJ', 'Guardians', 'The Supervisor', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=2&c=supervisor'),
+('ESTP', 'Artisans', 'The Promoter', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=4&c=promoter'),
+('INFJ', 'Idealists', 'The Counselor', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=3&c=counselor'),
+('INFP', 'Idealists', 'The Healer', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=3&c=healer'),
+('INTJ', 'Rationals', 'The Mastermind', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=5&c=mastermind'),
+('INTP', 'Rationals', 'The Architect', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=5&c=architect'),
+('ISFJ', 'Guardians', 'The Protector', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=2&c=protector'),
+('ISFP', 'Artisans', 'The Composer', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=4&c=Composer'),
+('ISTJ', 'Guardians', 'The Inspector', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=2&c=inspector'),
+('ISTP', 'Artisans', 'The Crafter', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=4&c=crafter');
 

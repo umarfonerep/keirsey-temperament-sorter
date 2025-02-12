@@ -119,4 +119,3 @@ VALUES
 ('ISFP', 'Artisans', 'The Composer', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=4&c=Composer'),
 ('ISTJ', 'Guardians', 'The Inspector', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=2&c=inspector'),
 ('ISTP', 'Artisans', 'The Crafter', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=4&c=crafter');
-

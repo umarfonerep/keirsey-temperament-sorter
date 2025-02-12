@@ -1,16 +1,6 @@
-<?php
-session_start();
-include '../includes/auth.php';
-
-if (!isLoggedIn() || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
-    exit();
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +8,7 @@ if (!isLoggedIn() || $_SESSION['role'] !== 'admin') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 </head>
+
 <body>
 
     <!-- Navbar -->
@@ -38,6 +29,9 @@ if (!isLoggedIn() || $_SESSION['role'] !== 'admin') {
                     <li class="nav-item">
                         <a class="nav-link" href="admin_results.php">Results</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../includes/logout.php">Logout</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -48,7 +42,4 @@ if (!isLoggedIn() || $_SESSION['role'] !== 'admin') {
         <h2>Welcome to the Admin Panel</h2>
         <p>Use the navigation bar to manage the system.</p>
     </div>
-    <a href="../includes/logout.php">logout</a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

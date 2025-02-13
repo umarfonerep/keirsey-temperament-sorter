@@ -80,24 +80,18 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
+                   <th>User Name</th>
                     <th>Type</th>
                     <th>Group</th>
-                    <th>Aspect</th>
-                    <th>Description</th>
-                </tr>
+                    <th>Aspect</th>                
+                  </tr>
             </thead>
             <tbody>
                 <tr>
+                    <td>Ehtisham</td>
                     <td>Extrovert</td>
                     <td>Social</td>
                     <td>Leadership</td>
-                    <td>Great at handling social situations.</td>
-                </tr>
-                <tr>
-                    <td>Introvert</td>
-                    <td>Reflective</td>
-                    <td>Thoughtful</td>
-                    <td>Prefers deep conversations over small talk.</td>
                 </tr>
             </tbody>
         </table>

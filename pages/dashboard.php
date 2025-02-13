@@ -1,15 +1,38 @@
 <?php
-// session_start();
-// include '../includes/auth.php';
+session_start();
+include '../includes/auth.php';
+include '../includes/db.php';
+include '../includes/results.php';
+include '../includes/responces.php';
 
-// if (!isLoggedIn() || $_SESSION['role'] !== 'user' ) {
-//     header("Location: ../pages/login.php");
-//     exit();
-// }
+if (!isLoggedIn() || $_SESSION['role'] !== 'user') {
+    header("Location: ../pages/login.php");
+    exit();
+}
+
+$userid = $_SESSION['user_id'];
+
+$responces = new Responces($conn);
+$responces_question = $responces->getReponces($userid);
+
+
+if (!empty($responces_question) && isset($responces_question[0]['question_responce'])) {
+    $responses_encode = json_decode($responces_question[0]['question_responce'], true);
+} else {
+    $responses_encode = []; 
+}
+
+$resultsobj = new Results($conn);
+$resultdatas = (!empty($responses_encode)) ? $resultsobj->process($responses_encode, $userid) : [];
+// var_dump($resultdatas);
+// die;
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,30 +44,42 @@
             background-color: white;
             color: black;
         }
+
         .navbar {
             background-color: #1E7AC2;
             /* border-bottom: 1px solid black; */
         }
+
         .navbar-brand img {
-            height: 80px; /* Adjust the logo size */
+            height: 80px;
+            /* Adjust the logo size */
         }
+
         .navbar-brand {
             font-size: 1.5rem;
             font-weight: bold;
             color: white !important;
         }
+        .table thead {
+            background-color: #1E7AC2 !important;
+            color: white;
+        }
+
         .nav-link {
             color: white !important;
         }
+
         .btn-logout {
             background-color: #F77F2E;
             color: white;
             /* border: 2px solid white; */
         }
+
         .btn-logout:hover {
             background-color: black;
             color: white;
         }
+
         .container-content {
             display: flex;
             flex-direction: column;
@@ -52,18 +87,21 @@
             align-items: center;
             height: 85vh;
         }
+
         .btn-custom {
             width: 200px;
             margin: 10px;
             border: 2px solid #1E7AC2;
             color: black;
-            
+
         }
+
         .btn-custom:hover {
             background-color: #F77F2E;
             color: white;
         }
-        .bg-color{
+
+        .bg-color {
             background-color: #1E7AC2;
             color: white !important;
         }
@@ -78,14 +116,15 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-        <a class="navbar-brand" href="dashboard.php">
+            <a class="navbar-brand" href="dashboard.php">
                 <img src="../assets/LOGO.png" alt="Logo">
-        </a>
+            </a>
             <div class="ms-auto">
                 <a href="../includes/logout.php" class="btn btn-logout">Logout</a>
             </div>
@@ -96,33 +135,37 @@
     <div class="container-content">
         <h1>Keirsey Temperament Test</h1>
         <div class="table-responsive">
-            <table class="table table-bordered";>
-                <thead class="table-dark">
-                    <tr style = "background-color: #1E7AC2;">
-                        <th>Type</th>
-                        <th>Group</th>
-                        <th>Aspect</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Extrovert</td>
-                        <td>Social</td>
-                        <td>Leadership</td>
-                        <td>Great at handling social situations.</td>
-                    </tr>
-                    <tr>
-                        <td>Introvert</td>
-                        <td>Reflective</td>
-                        <td>Thoughtful</td>
-                        <td>Prefers deep conversations over small talk.</td>
-                    </tr>
-                </tbody>
-            </table>
+            <?php if (!empty($resultdatas)): ?>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr style="background-color: #1E7AC2;">
+                            <th>Type</th>
+                            <th>Group</th>
+                            <th>Aspect</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($resultdatas as $resultdata): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($resultdata["personality_type"], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($resultdata["result_group"], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($resultdata["aspects"], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td>
+                                    <a href="<?php echo htmlspecialchars($resultdata['description_links'], ENT_QUOTES, 'UTF-8'); ?>" target="_blank">
+                                        <?php echo htmlspecialchars($resultdata["description_links"], ENT_QUOTES, 'UTF-8'); ?>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <a href="test.php"><button class="btn btn-custom">Retake Test</button></a>
+            <?php else: ?>
+                <a href="test.php"><button class="btn btn-custom bg-color">Take Test</button></a>
+            <?php endif; ?>
+
         </div>
-        <a href="test.php"><button class="btn btn-custom bg-color">Take Test</button></a>
-        <a href="#"><button class="btn btn-custom">Retake Test</button></a>
     </div>
 
 <!-- footer -->
@@ -134,4 +177,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

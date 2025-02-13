@@ -1,7 +1,41 @@
 <?php
+session_start();
+
+require_once '../includes/db.php';
+require_once '../includes/responces.php';
+require_once '../includes/auth.php';
+require_once '../includes/question.php';
+
+
+
+if (!isLoggedIn() || $_SESSION['role'] !== 'user') {
+    header("Location: ../pages/login.php");
+    exit();
+}
+
+$questionObj = new Question($conn);
+$questions = $questionObj->getAllQuestions();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $data = $_POST['q1'];
-    echo $data;
+    $data = [
+        'q1' => $_POST['q1'],
+        'q2' => $_POST['q2'],
+        'q3' => $_POST['q3'],
+        'q4' => $_POST['q4'],
+        'q5' => $_POST['q5'],
+    ];
+
+
+    $userid = $_SESSION['user_id'];
+    $questionObj = new Responces($conn);
+
+    if ($questionObj->storeResponces($data, $userid)) {
+        echo "Response stored successfully!";
+        header('location: dashboard.php');
+    } else {
+        echo "Failed to store response!";
+    }
+
     die;
 }
 ?>
@@ -24,17 +58,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             flex-direction: column;
         }
 
-        /* Navbar */
         .navbar {
             background-color: #1E7AC2;
         }
+
         .navbar-brand img {
             height: 80px;
+
         }
+
         .btn-logout {
             background-color: #F77F2E;
             color: white;
         }
+
         .btn-logout:hover {
             background-color: white;
             color: black;
@@ -50,8 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 1rem;
             background-color: #1E7AC2;
         }
-
-        /* Fix Dropdown Width */
         .form-select {
             width: 150px;  /* Set a fixed width */
         }
@@ -69,6 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg">

@@ -1,149 +1,44 @@
-body {
-  background-color: #D5D5D3;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+html, body {
+  height: 100%;
   margin: 0;
-  padding: 0
+  display: flex;
+  flex-direction: column;
 }
 
-/* Gradient Background */
-.gradient-custom {
-  /* fallback for old browsers */
-  background: #6a11cb;
-
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-}
-.bg-color{
-  background-color: #1E7AC2 !important;
-}
-
-/* Card Styles */
-.card {
-  width: 100%;
-  max-width: 450px;
-  border-radius: 12px;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.card-body {
-  padding: 30px;
-}
-
-h2 {
-  margin: 0;
-  font-size: 2rem;
-}
-
-/* Button Customizations */
-.btn-outline-light {
-  font-size: 1.1rem;
-  padding: 12px;
-  border-radius: 8px;
-}
-
-.btn-outline-light:hover {
-  background-color: #fff;
-  color: #007bff;
-}
-
-/* Link Styles */
-a {
-  font-size: 0.9rem;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-.text-muted {
-  font-size: 0.9rem;
-}
-
-.text-align {
-  text-align: left !important;
-}
-
-/* Navbar Styling */
-.navbar {
-  padding: 15px;
-}
-
-.navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.navbar-nav .nav-link {
-  font-size: 1.2rem;
-  color: #ffffff;
-  margin-right: 15px;
-}
-
-.navbar-nav .nav-link:hover {
-  color: #ffcc00;
-}
 .navbar {
   background-color: #1E7AC2;
-  padding: 10px 0;
 }
+
 .navbar-brand img {
-  height: 80px; /* Adjust the logo size */
-}
-.navbar .nav-link {
-  color: white !important;
-  font-weight: bold;
-}
-.navbar .nav-link:hover {
-  color: #f8f9fa !important;
+  height: 80px;
+
 }
 
-/* Content Section */
-.container {
-  max-width: 900px;
-}
-
-/* Tables */
-.table {
-  background-color: #f8f9fa;
-}
-
-.table th {
-  background-color: #343a40;
+.btn-logout {
+  background-color: #F77F2E;
   color: white;
 }
 
-/* Buttons */
-.btn {
-  font-size: 1rem;
-  padding: 8px 15px;
+.btn-logout:hover {
+  background-color: white;
+  color: black;
 }
 
-.btn-warning {
-  background-color: #f39c12;
-  border: none;
+/* Main Content */
+.container-content {
+  flex-grow: 1; /* Expands to push footer down */
 }
 
-.btn-danger {
-  background-color: #e74c3c;
-  border: none;
+/* Question Card */
+.card {
+  border-radius: 1rem;
+  background-color: #1E7AC2;
+}
+.form-select {
+  width: 150px;  /* Set a fixed width */
 }
 
-.btn-success {
-  background-color: #27ae60;
-  border: none;
-}
-
-/* Form Fields */
-.form-control {
-  font-size: 1rem;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-}
-/* Footer Styling */
+/* Footer */
 .footer {
   background-color: #f8f9fa;
   padding: 10px 0;
@@ -151,11 +46,4 @@ a:hover {
   font-size: 14px;
   color: #555;
   width: 100%;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .navbar-nav {
-      text-align: center;
-  }
 }

@@ -1,3 +1,14 @@
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    role ENUM('user', 'admin') NOT NULL DEFAULT 'user',
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 CREATE TABLE Questions (
     qid INT AUTO_INCREMENT PRIMARY KEY,
@@ -5,7 +16,7 @@ CREATE TABLE Questions (
 );
 INSERT INTO Questions (qtext) 
 VALUES 
-('When the phone rings, you hurry to get to it first and don\'t hope someone else gets it.,',),
+('When the phone rings, you hurry to get to it first and don\'t hope someone else gets it.'),
 ('You are more observant than introspective.'),
 ('Is it worse to have your head in the clouds than to be in a rut?'),
 ('With people, you are usually more firm than gentle.'),
@@ -120,4 +131,6 @@ VALUES
 ('ISFP', 'Artisans', 'The Composer', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=4&c=Composer'),
 ('ISTJ', 'Guardians', 'The Inspector', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=2&c=inspector'),
 ('ISTP', 'Artisans', 'The Crafter', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=4&c=crafter');
+
+
 

@@ -120,16 +120,9 @@ $resultdatas = (!empty($responses_encode)) ? $resultsobj->process($responses_enc
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="dashboard.php">
-                <img src="../assets/LOGO.png" alt="Logo">
-            </a>
-            <div class="ms-auto">
-                <a href="../includes/logout.php" class="btn btn-logout">Logout</a>
-            </div>
-        </div>
-    </nav>
+<?php
+include 'navbar.php';
+?>
 
     <!-- Dashboard Content -->
     <div class="container-content">

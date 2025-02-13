@@ -1,43 +1,68 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
+body {
+  background-color: white;
+  color: black;
 }
 
 .navbar {
   background-color: #1E7AC2;
+  /* border-bottom: 1px solid black; */
 }
 
 .navbar-brand img {
   height: 80px;
+  /* Adjust the logo size */
+}
 
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white !important;
+}
+
+.nav-link {
+  color: white !important;
+  font-weight: bold;
+}
+.nav-item{
+  margin-right: 1.5rem;
 }
 
 .btn-logout {
   background-color: #F77F2E;
   color: white;
+  /* border: 2px solid white; */
 }
 
 .btn-logout:hover {
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
 }
 
-/* Main Content */
 .container-content {
-  flex-grow: 1; /* Expands to push footer down */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
 }
 
-/* Question Card */
-.card {
-  border-radius: 1rem;
+.btn-custom {
+  width: 200px;
+  margin: 10px;
+  border: 2px solid #1E7AC2;
+  color: black;
+
+}
+
+.btn-custom:hover {
+  background-color: #F77F2E;
+  color: white;
+}
+
+.bg-color {
   background-color: #1E7AC2;
+  color: white !important;
 }
-.form-select {
-  width: 150px;  /* Set a fixed width */
-}
-
 /* Footer */
 .footer {
   background-color: #f8f9fa;

@@ -30,6 +30,10 @@
 
         .nav-link {
             color: white !important;
+            font-weight: bold;
+        }
+        .nav-item{
+            margin-right: 1.5rem;
         }
 
         .btn-logout {
@@ -82,23 +86,9 @@
 
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#"><img src="../assets/LOGO.png" alt="Logo" height="40"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active" href="admin_dashboard.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="admin_questions.php">Questions</a></li>
-                <li class="nav-item"><a class="nav-link" href="admin_results.php">Results</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
+<?php
+include 'navbar.php';
+?>
 <!-- Admin Dashboard Content -->
 <!-- Dashboard Content -->
 <div class="container-content">
@@ -136,6 +126,12 @@
 
         </div>
     </div>
+<!-- Footer (Sticks to Bottom) -->
+<footer class="footer mt-auto">
+    <div class="container">
+        &copy; 2025 Keirsey Temperament Test. All Rights Reserved.
+    </div>
+</footer>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

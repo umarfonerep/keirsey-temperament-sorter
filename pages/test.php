@@ -107,16 +107,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="dashboard.php">
-            <img src="../assets/LOGO.png" alt="Logo">
-        </a>            
-        <div class="ms-auto">
-            <a href="../includes/logout.php" class="btn btn-logout">Logout</a>
-        </div>
-    </div>
-</nav>
+<?php
+include 'navbar.php';
+?>
 
 <!-- Test Form -->
 <div class="container py-5 container-content">
@@ -125,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Heading with Reset Button -->
         <div class="d-flex justify-content-between align-items-center">
             <h1 class="fw-bold text-uppercase text-start mb-0">Keirsey Temperament Test</h1>
-            <button class="btn btn-outline-light btn-logout">Reset</button>
+            <button class="btn  btn-logout">Reset</button>
         </div>
         <hr class="text-white">
 

@@ -24,10 +24,24 @@
         .navbar-brand img {
             height: 80px;
         }
+        .nav-item{
+            margin-right: 1.5rem;
+        }
         .navbar .nav-link {
             color: white !important;
             font-weight: bold;
         }
+        .btn-logout {
+            background-color: #F77F2E;
+            color: white;
+            /* border: 2px solid white; */
+        }
+
+        .btn-logout:hover {
+            background-color: black;
+            color: white;
+        }
+
         .navbar .nav-link:hover {
             color: #f8f9fa !important;
         }
@@ -57,21 +71,9 @@
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#"><img src="../assets/LOGO.png" alt="Logo" height="40"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active" href="admin_dashboard.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="admin_questions.php">Questions</a></li>
-                <li class="nav-item"><a class="nav-link" href="admin_results.php">Results</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<?php
+include 'navbar.php';
+?>
 
 <!-- Results Section -->
 <div class="container mt-5 container-content">

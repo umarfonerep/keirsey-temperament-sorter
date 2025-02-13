@@ -96,12 +96,6 @@
                         <td>Leadership</td>
                         <td>Great at handling social situations.</td>
                     </tr>
-                    <tr>
-                        <td>Introvert</td>
-                        <td>Reflective</td>
-                        <td>Thoughtful</td>
-                        <td>Prefers deep conversations over small talk.</td>
-                    </tr>
                 </tbody>
             </table>
 

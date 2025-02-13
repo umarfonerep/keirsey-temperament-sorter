@@ -152,9 +152,14 @@ include 'navbar.php';
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
+
                 </table>
+
                 <a href="test.php"><button class="btn btn-custom">Retake Test</button></a>
+                <a href="share_result.php"><button class="btn btn-custom text-white btn-primary">Share Result</button></a>
+
             <?php else: ?>
+
                 <a href="test.php"><button class="btn btn-custom bg-color">Take Test</button></a>
             <?php endif; ?>
 

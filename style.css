@@ -63,6 +63,9 @@ body {
   background-color: #1E7AC2;
   color: white !important;
 }
+.index-content{
+  padding: 0 10rem;
+}
 /* Footer */
 .footer {
   background-color: #f8f9fa;

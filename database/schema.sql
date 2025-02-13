@@ -126,7 +126,7 @@ VALUES
 ('INFJ', 'Idealists', 'The Counselor', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=3&c=counselor'),
 ('INFP', 'Idealists', 'The Healer', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=3&c=healer'),
 ('INTJ', 'Rationals', 'The Mastermind', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=5&c=mastermind'),
-('INTP', 'Rationals', 'The Architect', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=5&c=architect'),
+('INTP', 'Rationals', 'The Architect', 'http://www .keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=5&c=architect'),
 ('ISFJ', 'Guardians', 'The Protector', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=2&c=protector'),
 ('ISFP', 'Artisans', 'The Composer', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=4&c=Composer'),
 ('ISTJ', 'Guardians', 'The Inspector', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=2&c=inspector'),

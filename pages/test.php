@@ -45,66 +45,70 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
+        /* Full height layout */
+        html,
         body {
-            background-color: white;
-            color: black;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         .navbar {
             background-color: #1E7AC2;
-            /* border-bottom: 1px solid black; */
         }
 
         .navbar-brand img {
             height: 80px;
-            /* Adjust the logo size */
-        }
 
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white !important;
-        }
-
-        .nav-link {
-            color: white !important;
         }
 
         .btn-logout {
             background-color: #F77F2E;
             color: white;
-            /* border: 2px solid white; */
         }
 
         .btn-logout:hover {
-            background-color: #0f5b9b;
-            color: white;
+            background-color: white;
+            color: black;
         }
 
+        /* Main Content */
+        .container-content {
+            flex-grow: 1;
+            /* Expands to push footer down */
+        }
+
+        /* Question Card */
         .card {
             border-radius: 1rem;
             background-color: #1E7AC2;
         }
 
         .form-select {
-            width: auto;
+            width: 150px;
+            /* Set a fixed width */
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
 
+
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="dashboard.php">
-                <img src="../assets/LOGO.png" alt="Logo">
-            </a>
-            <div class="ms-auto">
-                <a href="../includes/logout.php" class="btn btn-logout">Logout</a>
-            </div>
-        </div>
-    </nav>
+    <?php
+    include 'navbar.php';
+    ?>
 
     <!-- Test Form -->
     <div class="container py-5">
@@ -142,7 +146,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </form>
         </div>
+
     </div>
+    </div>
+    <!-- Footer (Sticks to Bottom) -->
+    <footer class="footer mt-auto">
+        <div class="container">
+            &copy; 2025 Keirsey Temperament Test. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         function saveToLocalStorage() {
             const selects = document.querySelectorAll('select');
@@ -185,7 +200,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

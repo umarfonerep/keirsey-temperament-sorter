@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <?php include 'pages/singup.php' ?>
+<h1>Keirsey Temperament Test</h1>
+<a href="/pages/test.php"><button class="btn btn-custom">Take Test</button></a>
 </body>
 </html>

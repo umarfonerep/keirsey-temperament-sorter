@@ -2,7 +2,6 @@
 class Question {
     private $conn;
 
-    // Constructor
     public function __construct($db) {
         $this->conn = $db;
     }
@@ -38,5 +37,7 @@ class Question {
             return false;
         }
     }
+
+    
 }
 ?>

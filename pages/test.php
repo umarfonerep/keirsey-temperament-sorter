@@ -17,26 +17,21 @@ $questionObj = new Question($conn);
 $questions = $questionObj->getAllQuestions();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $data = [
-        'q1' => $_POST['q1'],
-        'q2' => $_POST['q2'],
-        'q3' => $_POST['q3'],
-        'q4' => $_POST['q4'],
-        'q5' => $_POST['q5'],
-    ];
-
+    $data = [];
+    for ($i = 1; $i <= 70; $i++) {
+        $data['q' . $i] = $_POST['q' . $i] ?? 0;
+    }
 
     $userid = $_SESSION['user_id'];
-    $questionObj = new Responces($conn);
+    $responseObj = new Responces($conn);
 
-    if ($questionObj->storeResponces($data, $userid)) {
+    if ($responseObj->storeResponces($data, $userid)) {
         echo "Response stored successfully!";
         header('location: dashboard.php');
+        exit();
     } else {
         echo "Failed to store response!";
     }
-
-    die;
 }
 ?>
 
@@ -118,78 +113,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <!-- Heading with Reset Button -->
             <div class="d-flex justify-content-between align-items-center">
                 <h1 class="fw-bold text-uppercase text-start mb-0">Keirsey Temperament Test</h1>
-                <button class="btn btn-outline-light">Reset</button>
+                <button id="resetButton" class="btn btn-outline-light">Reset</button>
             </div>
             <hr class="text-white">
 
             <form action="" method="POST">
                 <div class="mt-4">
-                    <!-- Question 1 -->
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="text-white fs-5 me-3">1.</span>
-                        <label class="form-label text-white fs-5 flex-grow-1">When the phone rings you hurry to get to it first and don't hope someone else gets it.</label>
-                        <select class="form-select w-auto" name="q1">
-                            <option value="0">Nah</option>
-                            <option value="0">Not really</option>
-                            <option value="0.5">Kinda</option>
-                            <option value="1">50/50</option>
-                            <option value="1">Absolutely</option>
-                        </select>
-                    </div>
-
-                    <!-- Question 2 -->
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="text-white fs-5 me-3">2.</span>
-                        <label class="form-label text-white fs-5 flex-grow-1">You are more observant than introspective.</label>
-                        <select class="form-select w-auto" name="q2">
-                            <option value="0">Nah</option>
-                            <option value="0">Not really</option>
-                            <option value="0.5">Kinda</option>
-                            <option value="1">50/50</option>
-                            <option value="1">Absolutely</option>
-                        </select>
-                    </div>
-
-                    <!-- Question 3 -->
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="text-white fs-5 me-3">3.</span>
-                        <label class="form-label text-white fs-5 flex-grow-1">Is it worse to have your head in the clouds than be in a rut.</label>
-                        <select class="form-select w-auto" name="q3">
-                            < <option value="0">Nah</option>
+                    <!-- Loop through questions -->
+                    <?php foreach ($questions as $key => $value) { ?>
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="text-white fs-5 me-3"><?php echo $key + 1; ?>.</span>
+                            <label class="form-label text-white fs-5 flex-grow-1">
+                                <?php echo htmlspecialchars($value['qtext'], ENT_QUOTES, 'UTF-8'); ?>
+                            </label>
+                            <select class="form-select w-auto" name="q<?php echo $key; ?>">
+                                <option value="0">Nah</option>
                                 <option value="0">Not really</option>
                                 <option value="0.5">Kinda</option>
                                 <option value="1">50/50</option>
                                 <option value="1">Absolutely</option>
-                        </select>
-                    </div>
-
-                    <!-- Question 4 -->
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="text-white fs-5 me-3">4.</span>
-                        <label class="form-label text-white fs-5 flex-grow-1">I often rely on my feelings when making decisions.</label>
-                        <select class="form-select w-auto" name="q4">
-                            <option value="0">Nah</option>
-                            <option value="0">Not really</option>
-                            <option value="0.5">Kinda</option>
-                            <option value="1">50/50</option>
-                            <option value="1">Absolutely</option>
-                        </select>
-                    </div>
-
-                    <!-- Question 5 -->
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="text-white fs-5 me-3">5.</span>
-                        <label class="form-label text-white fs-5 flex-grow-1">With people you are usually more firm than gentle.</label>
-                        <select class="form-select w-auto" name="q5">
-                            <option value="0">Nah</option>
-                            <option value="0">Not really</option>
-                            <option value="0.5">Kinda</option>
-                            <option value="1">50/50</option>
-                            <option value="1">Absolutely</option>
-                        </select>
-                    </div>
+                            </select>
+                        </div>
+                    <?php } ?>
                 </div>
-
                 <!-- Score Button -->
                 <div class="text-center mt-4">
                     <button type="submit" class="btn btn-outline-light btn-lg">Score</button>
@@ -197,6 +143,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
     </div>
+    <script>
+        function saveToLocalStorage() {
+            const selects = document.querySelectorAll('select');
+            selects.forEach((select, index) => {
+                select.addEventListener('change', () => {
+                    localStorage.setItem(`q${index}`, select.value);
+                });
+            });
+        }
+
+        function restoreFromLocalStorage() {
+            const selects = document.querySelectorAll('select');
+            selects.forEach((select, index) => {
+                const savedValue = localStorage.getItem(`q${index}`);
+                if (savedValue !== null) {
+                    select.value = savedValue;
+                }
+            });
+        }
+
+        function clearLocalStorage() {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', () => {
+                localStorage.clear();
+            });
+        }
+
+        function resetForm() {
+            const form = document.querySelector('form');
+            form.reset();
+            localStorage.clear();
+        }
+
+        document.getElementById('resetButton').addEventListener('click', resetForm);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            saveToLocalStorage();
+            restoreFromLocalStorage();
+            clearLocalStorage();
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

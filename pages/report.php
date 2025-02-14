@@ -1,3 +1,38 @@
+<?php
+session_start();
+include '../includes/db.php';
+include '../includes/results.php';
+include '../includes/auth.php';
+
+date_default_timezone_set('UTC');
+
+$conn->query("SET time_zone = '+00:00';");
+
+if (!isset($_GET['token'])) {
+    die("Invalid request. Token is missing.");
+}
+
+$token = $_GET['token'];
+error_log("Token from URL: " . $token);
+
+$query = "SELECT user_id, expiry FROM result_tokens WHERE token = ? AND expiry > NOW()";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("s", $token);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+    echo "Invalid or expired token.";
+}
+
+$row = $result->fetch_assoc();
+$user_id = $row['user_id'];
+error_log("User ID from token: " . $user_id);
+
+// Fetch result data
+$resultsobj = new Results($conn);
+$userResultData = (!empty($resultsobj->getDataByUserId($user_id))) ? $resultsobj->getDataByUserId($user_id) : [];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,12 +49,14 @@
             flex-direction: column;
             min-height: 100vh;
         }
+
         .container-content {
             flex-grow: 1;
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .card {
             width: 60%;
             background-color: white;
@@ -27,6 +64,7 @@
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
+
         .heading {
             text-align: center;
             font-size: 28px;
@@ -34,14 +72,17 @@
             color: #1E7AC2;
             margin-bottom: 20px;
         }
+
         .report-table {
             margin-top: 10px;
         }
+
         /* Results Table */
         .table thead {
             background-color: #1E7AC2;
             color: white;
         }
+
         .footer {
             background-color: #1E7AC2;
             color: white;
@@ -50,22 +91,26 @@
             font-size: 14px;
             width: 100%;
         }
+
         .cta-text {
             text-align: center;
             font-size: 18px;
             font-weight: bold;
             margin-top: 20px;
         }
+
         .signup-link {
             text-align: center;
             font-size: 16px;
             margin-top: 10px;
         }
+
         .signup-link a {
             color: #1E7AC2;
             font-weight: bold;
             text-decoration: none;
         }
+
         .signup-link a:hover {
             text-decoration: underline;
         }
@@ -90,12 +135,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Extrovert</td>
-                        <td>Social</td>
-                        <td>Leadership</td>
-                        <td>Great at handling social situations.</td>
-                    </tr>
+                    <?php foreach ($userResultData  as $resultdata): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($resultdata["personality_type"], ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td><?php echo htmlspecialchars($resultdata["result_group"], ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td><?php echo htmlspecialchars($resultdata["aspects"], ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td>
+                                <a href="<?php echo htmlspecialchars($resultdata['description_links'], ENT_QUOTES, 'UTF-8'); ?>" target="_blank">
+                                    <?php echo htmlspecialchars($resultdata["description_links"], ENT_QUOTES, 'UTF-8'); ?>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
 

@@ -5,6 +5,7 @@ require_once '../includes/db.php';
 require_once '../includes/responces.php';
 require_once '../includes/auth.php';
 require_once '../includes/question.php';
+require_once '../includes/results.php';
 
 
 
@@ -15,25 +16,39 @@ if (!isLoggedIn() || $_SESSION['role'] !== 'user') {
 
 $questionObj = new Question($conn);
 $questions = $questionObj->getAllQuestions();
+$responseObj = new Responces($conn);
+$resultsObj = new Results($conn);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $userid = $_SESSION['user_id'];
+    
     $data = [];
     for ($i = 1; $i <= 70; $i++) {
         $data['q' . $i] = $_POST['q' . $i] ?? 0;
     }
 
-    $userid = $_SESSION['user_id'];
-    $responseObj = new Responces($conn);
-
+    // Store responses
     if ($responseObj->storeResponces($data, $userid)) {
-        echo "Response stored successfully!";
-        header('location: dashboard.php');
+        // Retrieve stored responses
+        $responces_question = $responseObj->getReponces($userid);
+        $responses_encode = !empty($responces_question) && isset($responces_question[0]['question_responce']) 
+            ? json_decode($responces_question[0]['question_responce'], true) 
+            : [];
+
+        // Process results only if responses exist
+        if (!empty($responses_encode)) {
+            $resultsObj->process($responses_encode, $userid);
+        }
+
+        // Redirect after successful processing
+        header('Location: dashboard.php');
         exit();
     } else {
         echo "Failed to store response!";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

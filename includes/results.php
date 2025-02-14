@@ -38,51 +38,31 @@ class Results
     }
 
     public function getAlldata()
-    {
-        $data = [];
+{
+    $data = [];
 
-        // Fetch all results
-        $stmt = $this->conn->prepare("SELECT * FROM results");
-        if (!$stmt) {
-            error_log("Prepare failed: " . $this->conn->error);
-            return false;
-        }
-        if (!$stmt->execute()) {
-            error_log("Execute failed: " . $stmt->error);
-            return false;
-        }
-        $stmt->close();
+    $query = "SELECT u.username, r.personality_type, d.result_group, d.aspects 
+              FROM users u 
+              JOIN results r ON u.id = r.user_id
+              JOIN data d ON r.personality_type = d.personality_type
+              ORDER BY u.id ASC";  // Sort by user ID (older first, newer last)
 
-        // Fetch data based on personality type
-        $query = "SELECT d.* FROM data d JOIN results r ON d.personality_type = r.personality_type";
-        $stmt = $this->conn->prepare($query);
-        if (!$stmt) {
-            error_log("Prepare failed: " . $this->conn->error);
-            return false;
-        }
-        if (!$stmt->execute()) {
-            error_log("Execute failed: " . $stmt->error);
-            return false;
-        }
-        $data['personality_data'] = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-        $stmt->close();
-
-        // Fetch usernames of users who have results
-        $query = "SELECT u.username FROM users u JOIN results r ON u.id = r.user_id";
-        $stmt = $this->conn->prepare($query);
-        if (!$stmt) {
-            error_log("Prepare failed: " . $this->conn->error);
-            return false;
-        }
-        if (!$stmt->execute()) {
-            error_log("Execute failed: " . $stmt->error);
-            return false;
-        }
-        $data['users'] = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-        $stmt->close();
-
-        return $data;
+    $stmt = $this->conn->prepare($query);
+    if (!$stmt) {
+        error_log("Prepare failed: " . $this->conn->error);
+        return false;
     }
+    if (!$stmt->execute()) {
+        error_log("Execute failed: " . $stmt->error);
+        return false;
+    }
+
+    $data['results'] = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+
+    return $data;
+}
+
 
     public function getDataByUserId($user_id)
     {

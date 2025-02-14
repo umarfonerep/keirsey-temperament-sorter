@@ -2,10 +2,10 @@
 session_start();
 include '../includes/db.php';
 include '../includes/auth.php';
-if (!isLoggedIn()) {
-    header("Location: login.php");
-    exit();
-}
+// if (!isLoggedIn()) {
+//     header("Location: login.php");
+//     exit();
+// }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];

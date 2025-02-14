@@ -109,27 +109,6 @@ include 'navbar.php';
     </div>
 </nav>
 
-<!-- Questions Section -->
-<div class="container mt-5 container-content">
-    <h2 class="text-dark">Manage Questions</h2>
-    <table class="table table-bordered table-light mt-3">
-        <thead>
-            <tr>
-                <th>Question</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><p>When the phone rings, you hurry to get to it first and don't hope someone else gets it.</p></td>
-                <td>
-                    <button class="btn btn-warning">Edit</button>
-                    <button class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
 
 <!-- Footer (Sticks to Bottom) -->
 <footer class="footer mt-auto">

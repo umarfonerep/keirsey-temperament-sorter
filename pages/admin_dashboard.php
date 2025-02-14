@@ -1,17 +1,11 @@
 <?php
-session_start();
-
 include '../includes/auth.php';
 include '../includes/db.php';
 include '../includes/results.php';
 
 $results = new Results($conn);
 $data = $results->getAlldata();
-
-$resultdatas = $data['personality_data'];
-$users = $data['users'];
-
-
+$resultdatas = $data['results'];
 ?>
 
 <!DOCTYPE html>
@@ -48,9 +42,9 @@ include 'navbar.php';
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($resultdatas as $index => $resultdata): ?>
+                    <?php foreach ($resultdatas as $resultdata): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($users[$index]["username"] ?? "Unknown", ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td><?php echo htmlspecialchars($resultdata["username"], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo htmlspecialchars($resultdata["personality_type"], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo htmlspecialchars($resultdata["result_group"], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo htmlspecialchars($resultdata["aspects"], ENT_QUOTES, 'UTF-8'); ?></td>

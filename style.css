@@ -1,16 +1,26 @@
 body {
   background-color: white;
   color: black;
+  h1{
+    font-weight: 700;
+    font-size: 34px;
+    padding-bottom: 20px;
+    color: #1E7AC2;
+  }
+  h2{
+    font-weight: 700;
+    font-size: 30px;
+    padding-bottom: 10px;
+    color: #1E7AC2;
+  }
 }
 
 .navbar {
   background-color: #1E7AC2;
-  /* border-bottom: 1px solid black; */
 }
 
 .navbar-brand img {
   height: 80px;
-  /* Adjust the logo size */
 }
 
 .navbar-brand {
@@ -26,16 +36,27 @@ body {
 .nav-item{
   margin-right: 1.5rem;
 }
+.btn{
+  font-weight: 600;
+}
 
 .btn-logout {
   background-color: #F77F2E;
   color: white;
-  /* border: 2px solid white; */
+  font-weight: 700;
 }
-
 .btn-logout:hover {
-  background-color: black;
+  background-color: red !important;
   color: white;
+}
+.edit-btn{
+  background-color: #F77F2E !important;
+  color: #f8f9fa;
+}
+.edit-btn:hover{
+  background-color: white !important;
+  color: black;
+  border: 1px solid black;
 }
 
 .container-content {
@@ -43,9 +64,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 85vh;
+  height: 80vh !important;
 }
-
+.btn-custom:hover {
+  background-color: #F77F2E;
+  color: white;
+  border: 2px solid #F77F2E;
+}
 .btn-custom {
   width: 200px;
   margin: 10px;
@@ -66,7 +91,6 @@ body {
 .index-content{
   padding: 0 10rem;
 }
-/* Footer */
 .footer {
   background-color: #f8f9fa;
   padding: 10px 0;
@@ -74,4 +98,16 @@ body {
   font-size: 14px;
   color: #555;
   width: 100%;
+}
+
+/* Responsive Design */
+@media(max-width: 1050px) {
+  .container-content{
+    height: 38vh !important;
+  }
+}
+@media(max-width: 568px) {
+  .container-content{
+    height: 56vh !important;
+  }
 }

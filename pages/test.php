@@ -48,41 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        /* Full height layout */
-        html, body {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .navbar {
-            background-color: #1E7AC2;
-        }
-
-        .navbar-brand img {
-            height: 80px;
-
-        }
-
-        .btn-logout {
-            background-color: #F77F2E;
-            color: white;
-        }
-
-        .btn-logout:hover {
-            background-color: white;
-            color: black;
-        }
-
-        /* Main Content */
-        .container-content {
-            flex-grow: 1; /* Expands to push footer down */
-        }
-
-        /* Question Card */
         .card {
             border-radius: 1rem;
             background-color: #1E7AC2;
@@ -91,15 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 150px;  /* Set a fixed width */
         }
 
-        /* Footer */
-        .footer {
-            background-color: #f8f9fa;
-            padding: 10px 0;
-            text-align: center;
-            font-size: 14px;
-            color: #555;
-            width: 100%;
-        }
     </style>
 </head>
 
@@ -121,7 +80,6 @@ include 'navbar.php';
             <button class="btn  btn-logout">Reset</button>
         </div>
         <hr class="text-white">
-
         <form action="" method="POST">
             <div class="mt-4">
                 <!-- Question 1 -->

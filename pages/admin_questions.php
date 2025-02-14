@@ -56,8 +56,6 @@ include 'navbar.php';
 
     </div>
 </nav>
-
-
 <!-- Footer (Sticks to Bottom) -->
 <?php 
 include 'footer.php';

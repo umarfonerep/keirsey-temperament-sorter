@@ -31,9 +31,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup Page</title>
-    <link href="styles.css" rel="stylesheet">
+    <link href="../styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+    .p-5{
+        padding: 0 3rem !important;
+    }
+    .signup-head{
+        padding-top: 1rem;
+    }
+</style>
 
 <body>
     <section class="vh-100 d-flex align-items-center justify-content-center">
@@ -45,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php endif; ?>
                     <div class="card text-white p-5" style="border-radius: 1rem; background-color: #1E7AC2;">
                         <div class="card-body">
-                            <h2 class="fw-bold text-center">Sign Up</h2>
+                            <h2 class="fw-bold text-center signup-head">Sign Up</h2>
                             <p class="text-white-50 text-center">Please enter your details to create an account!</p>
                             <form action="" method="POST">
                                 <div class="row">

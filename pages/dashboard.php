@@ -60,6 +60,10 @@ $resultdatas = (!empty($responses_encode)) ? $resultsobj->process($responses_enc
             font-weight: bold;
             color: white !important;
         }
+        .table thead {
+            background-color: #1E7AC2 !important;
+            color: white;
+        }
 
         .nav-link {
             color: white !important;
@@ -101,22 +105,24 @@ $resultdatas = (!empty($responses_encode)) ? $resultsobj->process($responses_enc
             background-color: #1E7AC2;
             color: white !important;
         }
+        /* Footer */
+        .footer {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="dashboard.php">
-                <img src="../assets/LOGO.png" alt="Logo">
-            </a>
-            <div class="ms-auto">
-                <a href="../includes/logout.php" class="btn btn-logout">Logout</a>
-            </div>
-        </div>
-    </nav>
+<?php
+include 'navbar.php';
+?>
 
     <!-- Dashboard Content -->
     <div class="container-content">
@@ -124,7 +130,7 @@ $resultdatas = (!empty($responses_encode)) ? $resultsobj->process($responses_enc
         <div class="table-responsive">
             <?php if (!empty($resultdatas)): ?>
                 <table class="table table-bordered">
-                    <thead class="table-dark">
+                    <thead>
                         <tr style="background-color: #1E7AC2;">
                             <th>Type</th>
                             <th>Group</th>
@@ -154,6 +160,13 @@ $resultdatas = (!empty($responses_encode)) ? $resultsobj->process($responses_enc
 
         </div>
     </div>
+
+<!-- footer -->
+    <footer class="footer mt-auto">
+    <div class="container">
+        &copy; 2025 Keirsey Temperament Test. All Rights Reserved.
+    </div>
+</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

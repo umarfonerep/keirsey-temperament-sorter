@@ -17,26 +17,21 @@ $questionObj = new Question($conn);
 $questions = $questionObj->getAllQuestions();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $data = [
-        'q1' => $_POST['q1'],
-        'q2' => $_POST['q2'],
-        'q3' => $_POST['q3'],
-        'q4' => $_POST['q4'],
-        'q5' => $_POST['q5'],
-    ];
-
+    $data = [];
+    for ($i = 1; $i <= 70; $i++) {
+        $data['q' . $i] = $_POST['q' . $i] ?? 0;
+    }
 
     $userid = $_SESSION['user_id'];
-    $questionObj = new Responces($conn);
+    $responseObj = new Responces($conn);
 
-    if ($questionObj->storeResponces($data, $userid)) {
+    if ($responseObj->storeResponces($data, $userid)) {
         echo "Response stored successfully!";
         header('location: dashboard.php');
+        exit();
     } else {
         echo "Failed to store response!";
     }
-
-    die;
 }
 ?>
 
@@ -50,66 +45,70 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
+        /* Full height layout */
+        html,
         body {
-            background-color: white;
-            color: black;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         .navbar {
             background-color: #1E7AC2;
-            /* border-bottom: 1px solid black; */
         }
 
         .navbar-brand img {
             height: 80px;
-            /* Adjust the logo size */
-        }
 
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white !important;
-        }
-
-        .nav-link {
-            color: white !important;
         }
 
         .btn-logout {
             background-color: #F77F2E;
             color: white;
-            /* border: 2px solid white; */
         }
 
         .btn-logout:hover {
-            background-color: #0f5b9b;
-            color: white;
+            background-color: white;
+            color: black;
         }
 
+        /* Main Content */
+        .container-content {
+            flex-grow: 1;
+            /* Expands to push footer down */
+        }
+
+        /* Question Card */
         .card {
             border-radius: 1rem;
             background-color: #1E7AC2;
         }
 
         .form-select {
-            width: auto;
+            width: 150px;
+            /* Set a fixed width */
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
 
+
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="dashboard.php">
-                <img src="../assets/LOGO.png" alt="Logo">
-            </a>
-            <div class="ms-auto">
-                <a href="../includes/logout.php" class="btn btn-logout">Logout</a>
-            </div>
-        </div>
-    </nav>
+    <?php
+    include 'navbar.php';
+    ?>
 
     <!-- Test Form -->
     <div class="container py-5">
@@ -118,87 +117,89 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <!-- Heading with Reset Button -->
             <div class="d-flex justify-content-between align-items-center">
                 <h1 class="fw-bold text-uppercase text-start mb-0">Keirsey Temperament Test</h1>
-                <button class="btn btn-outline-light">Reset</button>
+                <button id="resetButton" class="btn btn-outline-light">Reset</button>
             </div>
             <hr class="text-white">
 
             <form action="" method="POST">
                 <div class="mt-4">
-                    <!-- Question 1 -->
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="text-white fs-5 me-3">1.</span>
-                        <label class="form-label text-white fs-5 flex-grow-1">When the phone rings you hurry to get to it first and don't hope someone else gets it.</label>
-                        <select class="form-select w-auto" name="q1">
-                            <option value="0">Nah</option>
-                            <option value="0">Not really</option>
-                            <option value="0.5">Kinda</option>
-                            <option value="1">50/50</option>
-                            <option value="1">Absolutely</option>
-                        </select>
-                    </div>
-
-                    <!-- Question 2 -->
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="text-white fs-5 me-3">2.</span>
-                        <label class="form-label text-white fs-5 flex-grow-1">You are more observant than introspective.</label>
-                        <select class="form-select w-auto" name="q2">
-                            <option value="0">Nah</option>
-                            <option value="0">Not really</option>
-                            <option value="0.5">Kinda</option>
-                            <option value="1">50/50</option>
-                            <option value="1">Absolutely</option>
-                        </select>
-                    </div>
-
-                    <!-- Question 3 -->
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="text-white fs-5 me-3">3.</span>
-                        <label class="form-label text-white fs-5 flex-grow-1">Is it worse to have your head in the clouds than be in a rut.</label>
-                        <select class="form-select w-auto" name="q3">
-                            < <option value="0">Nah</option>
+                    <!-- Loop through questions -->
+                    <?php foreach ($questions as $key => $value) { ?>
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="text-white fs-5 me-3"><?php echo $key + 1; ?>.</span>
+                            <label class="form-label text-white fs-5 flex-grow-1">
+                                <?php echo htmlspecialchars($value['qtext'], ENT_QUOTES, 'UTF-8'); ?>
+                            </label>
+                            <select class="form-select w-auto" name="q<?php echo $key; ?>">
+                                <option value="0">Nah</option>
                                 <option value="0">Not really</option>
                                 <option value="0.5">Kinda</option>
                                 <option value="1">50/50</option>
                                 <option value="1">Absolutely</option>
-                        </select>
-                    </div>
-
-                    <!-- Question 4 -->
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="text-white fs-5 me-3">4.</span>
-                        <label class="form-label text-white fs-5 flex-grow-1">I often rely on my feelings when making decisions.</label>
-                        <select class="form-select w-auto" name="q4">
-                            <option value="0">Nah</option>
-                            <option value="0">Not really</option>
-                            <option value="0.5">Kinda</option>
-                            <option value="1">50/50</option>
-                            <option value="1">Absolutely</option>
-                        </select>
-                    </div>
-
-                    <!-- Question 5 -->
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="text-white fs-5 me-3">5.</span>
-                        <label class="form-label text-white fs-5 flex-grow-1">With people you are usually more firm than gentle.</label>
-                        <select class="form-select w-auto" name="q5">
-                            <option value="0">Nah</option>
-                            <option value="0">Not really</option>
-                            <option value="0.5">Kinda</option>
-                            <option value="1">50/50</option>
-                            <option value="1">Absolutely</option>
-                        </select>
-                    </div>
+                            </select>
+                        </div>
+                    <?php } ?>
                 </div>
-
                 <!-- Score Button -->
                 <div class="text-center mt-4">
                     <button type="submit" class="btn btn-outline-light btn-lg">Score</button>
                 </div>
             </form>
         </div>
+
     </div>
+    </div>
+    <!-- Footer (Sticks to Bottom) -->
+    <footer class="footer mt-auto">
+        <div class="container">
+            &copy; 2025 Keirsey Temperament Test. All Rights Reserved.
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function saveToLocalStorage() {
+            const selects = document.querySelectorAll('select');
+            selects.forEach((select, index) => {
+                select.addEventListener('change', () => {
+                    localStorage.setItem(`q${index}`, select.value);
+                });
+            });
+        }
+
+        function restoreFromLocalStorage() {
+            const selects = document.querySelectorAll('select');
+            selects.forEach((select, index) => {
+                const savedValue = localStorage.getItem(`q${index}`);
+                if (savedValue !== null) {
+                    select.value = savedValue;
+                }
+            });
+        }
+
+        function clearLocalStorage() {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', () => {
+                localStorage.clear();
+            });
+        }
+
+        function resetForm() {
+            const form = document.querySelector('form');
+            form.reset();
+            localStorage.clear();
+        }
+
+        document.getElementById('resetButton').addEventListener('click', resetForm);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            saveToLocalStorage();
+            restoreFromLocalStorage();
+            clearLocalStorage();
+        });
+    </script>
+
 </body>
 
 </html>

@@ -26,13 +26,14 @@
             </li>
             </ul>
         </div>
+
         </div>
     </nav>
     <!-- Dashboard Content -->
     <div class="container">
-        <div class="container-content">
+        <div class="container-content index-content">
             <h1>Keirsey Temperament Test</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, modi nobis explicabo enim neque asperiores incidunt consectetur facere minima laboriosam magnam debitis fugiat harum dicta non aliquid cupiditate deserunt! Molestias architecto odio laborum tempora optio consequatur obcaecati accusamus quaerat nam.</p>
+            <p>The Keirsey Temperament Test is a personality assessment tool that helps individuals understand their temperament, communication style, and behavior patterns. Based on Dr. David Keirsey's research, the test categorizes people into four main temperaments: Guardian, Artisan, Idealist, and Rational. Each temperament reflects distinct preferences in how individuals interact with others, make decisions, and respond to their environment. This test is widely used in personal development, career counseling, and team building to foster better communication and collaboration.</p>
             <a href="/pages/test.php"><button class="btn btn-custom bg-color">Take Test</button></a>
         </div>
     </div>

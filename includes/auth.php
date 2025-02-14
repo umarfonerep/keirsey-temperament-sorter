@@ -10,26 +10,6 @@ function isLoggedIn()
     return isset($_SESSION['user_id']);
 }
 
-function getUser($conn)
-{
-    $stmt = $conn->prepare("SELECT * FROM users");
-    if (!$stmt) {
-        error_log("Prepare failed: " . $conn->error);
-        return false;
-    }
-
-    if (!$stmt->execute()) {
-        error_log("Execute failed: " . $stmt->error);
-        return false;
-    }
-
-    $result = $stmt->get_result();
-    if ($result->num_rows === 0) {
-        return false; // No users found
-    }
-
-    return $result->fetch_all(MYSQLI_ASSOC); // Fetch all users as an associative array
-}
 
 function registerUser($username, $first_name, $last_name, $phone, $email, $password, $conn)
 {

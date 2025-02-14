@@ -3,29 +3,22 @@ session_start();
 include '../includes/db.php';
 require_once '../includes/question.php';
 require_once '../includes/auth.php';
-
-
  if (!isLoggedIn() || $_SESSION['role'] !== 'admin' ) {
     header("Location: ../pages/login.php");
     exit();
 }
-
 $id = $_GET['id'];
-
 $questionObj = new Question($conn);
 $question = $questionObj->editQuestion($id);
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $heading = $_POST['heading'];
     $questionObj->updateQuestion($heading, $id);
-    
     header("Location: admin_questions.php");
     exit();
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../style.css" rel="stylesheet"> <!-- Custom styles if needed -->
 </head>
-
 <body>
     <!-- Navbar -->
 <?php
@@ -47,7 +39,11 @@ include 'navbar.php';
             <form method="POST">
                 <div class="mb-3">
                     <label class="form-label fw-bold">Question</label>
+<<<<<<< HEAD
                     <input type="text" class="form-control" name="heading" 
+=======
+                    <input type="text" class="form-control" name="heading"
+>>>>>>> 7c923ce1b9231c6383f88f1581697d3da9860e20
                         value="<?php echo htmlspecialchars($question[0]['qtext']); ?>">
                 </div>
                 <div class="text-center">
@@ -57,9 +53,11 @@ include 'navbar.php';
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 7c923ce1b9231c6383f88f1581697d3da9860e20
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

@@ -5,6 +5,7 @@ require_once '../includes/db.php';
 require_once '../includes/responces.php';
 require_once '../includes/auth.php';
 require_once '../includes/question.php';
+require_once '../includes/results.php';
 
 
 
@@ -15,30 +16,39 @@ if (!isLoggedIn() || $_SESSION['role'] !== 'user') {
 
 $questionObj = new Question($conn);
 $questions = $questionObj->getAllQuestions();
+$responseObj = new Responces($conn);
+$resultsObj = new Results($conn);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $data = [
-        'q1' => $_POST['q1'],
-        'q2' => $_POST['q2'],
-        'q3' => $_POST['q3'],
-        'q4' => $_POST['q4'],
-        'q5' => $_POST['q5'],
-    ];
-
-
     $userid = $_SESSION['user_id'];
-    $questionObj = new Responces($conn);
+    
+    $data = [];
+    for ($i = 1; $i <= 70; $i++) {
+        $data['q' . $i] = $_POST['q' . $i] ?? 0;
+    }
 
-    if ($questionObj->storeResponces($data, $userid)) {
-        echo "Response stored successfully!";
-        header('location: dashboard.php');
+    // Store responses
+    if ($responseObj->storeResponces($data, $userid)) {
+        // Retrieve stored responses
+        $responces_question = $responseObj->getReponces($userid);
+        $responses_encode = !empty($responces_question) && isset($responces_question[0]['question_responce']) 
+            ? json_decode($responces_question[0]['question_responce'], true) 
+            : [];
+
+        // Process results only if responses exist
+        if (!empty($responses_encode)) {
+            $resultsObj->process($responses_encode, $userid);
+        }
+
+        // Redirect after successful processing
+        header('Location: dashboard.php');
+        exit();
     } else {
         echo "Failed to store response!";
     }
-
-    die;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,8 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 1rem;
             background-color: #1E7AC2;
         }
+
         .form-select {
-            width: 150px;  /* Set a fixed width */
+            width: 150px;
         }
 
     </style>
@@ -65,20 +76,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 
-<!-- Navbar -->
-<?php
-include 'navbar.php';
-?>
+    <!-- Navbar -->
+    <?php
+    include 'navbar.php';
+    ?>
 
-<!-- Test Form -->
-<div class="container py-5 container-content">
-    <div class="card text-white p-5">
+    <!-- Test Form -->
+    <div class="container py-5">
+        <div class="card text-white p-5">
 
-        <!-- Heading with Reset Button -->
-        <div class="d-flex justify-content-between align-items-center">
-            <h1 class="fw-bold text-uppercase text-start mb-0">Keirsey Temperament Test</h1>
-            <button class="btn  btn-logout">Reset</button>
+            <!-- Heading with Reset Button -->
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="fw-bold text-uppercase text-start mb-0">Keirsey Temperament Test</h1>
+                <button id="resetButton" class="btn btn-outline-light">Reset</button>
+            </div>
+            <hr class="text-white">
+
+            <form action="" method="POST">
+                <div class="mt-4">
+                    <!-- Loop through questions -->
+                    <?php foreach ($questions as $key => $value) { ?>
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="text-white fs-5 me-3"><?php echo $key + 1; ?>.</span>
+                            <label class="form-label text-white fs-5 flex-grow-1">
+                                <?php echo htmlspecialchars($value['qtext'], ENT_QUOTES, 'UTF-8'); ?>
+                            </label>
+                            <select class="form-select w-auto" name="q<?php echo $key; ?>">
+                                <option value="0">Nah</option>
+                                <option value="0">Not really</option>
+                                <option value="0.5">Kinda</option>
+                                <option value="1">50/50</option>
+                                <option value="1">Absolutely</option>
+                            </select>
+                        </div>
+                    <?php } ?>
+                </div>
+                <!-- Score Button -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-outline-light btn-lg">Score</button>
+                </div>
+            </form>
         </div>
+
         <hr class="text-white">
         <form action="" method="POST">
             <div class="mt-4">
@@ -161,17 +200,61 @@ include 'navbar.php';
                 <button type="submit" class="btn btn-outline-light btn-lg">Score</button>
             </div>
         </form>
-    </div>
-</div>
 
-<!-- Footer (Sticks to Bottom) -->
-<footer class="footer mt-auto">
-    <div class="container">
-        &copy; 2025 Keirsey Temperament Test. All Rights Reserved.
-    </div>
-</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+    </div>
+    <!-- Footer (Sticks to Bottom) -->
+    <footer class="footer mt-auto">
+        <div class="container">
+            &copy; 2025 Keirsey Temperament Test. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function saveToLocalStorage() {
+            const selects = document.querySelectorAll('select');
+            selects.forEach((select, index) => {
+                select.addEventListener('change', () => {
+                    localStorage.setItem(`q${index}`, select.value);
+                });
+            });
+        }
+
+        function restoreFromLocalStorage() {
+            const selects = document.querySelectorAll('select');
+            selects.forEach((select, index) => {
+                const savedValue = localStorage.getItem(`q${index}`);
+                if (savedValue !== null) {
+                    select.value = savedValue;
+                }
+            });
+        }
+
+        function clearLocalStorage() {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', () => {
+                localStorage.clear();
+            });
+        }
+
+        function resetForm() {
+            const form = document.querySelector('form');
+            form.reset();
+            localStorage.clear();
+        }
+
+        document.getElementById('resetButton').addEventListener('click', resetForm);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            saveToLocalStorage();
+            restoreFromLocalStorage();
+            clearLocalStorage();
+        });
+    </script>
+
 </body>
 
 </html>

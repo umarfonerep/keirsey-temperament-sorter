@@ -2,8 +2,8 @@
 session_start();
 include '../includes/db.php';
 include '../includes/auth.php';
-if (isLoggedIn()) {
-    header("Location: dashboard.php");
+if (!isLoggedIn()) {
+    header("Location: login.php");
     exit();
 }
 

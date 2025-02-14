@@ -2,24 +2,29 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 require '../vendor/autoload.php';
 
-function isLoggedIn() {
-    return isset($_SESSION['user_id'] );
+function isLoggedIn()
+{
+    return isset($_SESSION['user_id']);
 }
 
-function registerUser($username, $first_name, $last_name, $phone, $email, $password, $conn) {
+
+function registerUser($username, $first_name, $last_name, $phone, $email, $password, $conn)
+{
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $stmt = $conn->prepare("INSERT INTO users (username, email, password, first_name, last_name, phone ) VALUES (?, ?, ?, ?, ?, ?)");
     if ($stmt) {
-        $stmt->bind_param("ssssss", $username, $email, $hashedPassword, $first_name, $last_name, $phone );
+        $stmt->bind_param("ssssss", $username, $email, $hashedPassword, $first_name, $last_name, $phone);
         return $stmt->execute();
     } else {
         return false;
     }
 }
 
-function loginUser($email, $password, $conn) {
+function loginUser($email, $password, $conn)
+{
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
     if (!$stmt) {
         error_log("Prepare failed: " . $conn->error);
@@ -47,7 +52,8 @@ function loginUser($email, $password, $conn) {
     return false;
 }
 
-function sendPasswordResetLink($email, $mysqli) {
+function sendPasswordResetLink($email, $mysqli)
+{
     $stmt = $mysqli->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -66,12 +72,12 @@ function sendPasswordResetLink($email, $mysqli) {
         $mail = new PHPMailer(true);
 
         try {
-            $mail->isSMTP(); 
+            $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true; 
+            $mail->SMTPAuth = true;
             $mail->Username = 'umar.fonerep@gmail.com';
             $mail->Password = 'jinw wayw izhh tdmu';
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
             $mail->setFrom('no-reply@keirsey-temperament-sorter.test', 'Keirsey Temperament Sorter');
@@ -121,6 +127,3 @@ function sendPasswordResetLink($email, $mysqli) {
 //         return "Invalid token.";
 //     }
 // }
-
-
-?>

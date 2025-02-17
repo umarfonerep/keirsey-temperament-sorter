@@ -7,13 +7,49 @@ CREATE TABLE users (
     role ENUM('user', 'admin') NOT NULL DEFAULT 'user',
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+    reset_token VARCHAR(255) NULL,
+    reset_token_expiry DATETIME NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE result_tokens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    token VARCHAR(100) NOT NULL,
+    expiry DATETIME NOT NULL,
+    UNIQUE (token)
+);
+
+CREATE TABLE results (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    personality_type VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE RESPONCES (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userid INT NOT NULL,
+    question_responce JSON NOT NULL,
+    FOREIGN KEY (userid) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Questions (
     qid INT AUTO_INCREMENT PRIMARY KEY,
     qtext TEXT NOT NULL
 );
+
+CREATE TABLE data (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    personality_type VARCHAR(50) NOT NULL,
+    result_group VARCHAR(50) NOT NULL,
+    aspects TEXT NOT NULL,
+    description_links TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
 INSERT INTO Questions (qtext) 
 VALUES 
 ('When the phone rings, you hurry to get to it first and don\'t hope someone else gets it.'),
@@ -88,30 +124,13 @@ VALUES
 ('You are more routine than whimsical.');
   
 
-CREATE TABLE RESPONCES (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    userid INT NOT NULL,
-    question_responce JSON NOT NULL,
-    FOREIGN KEY (userid) REFERENCES users(id) ON DELETE CASCADE
-)
-
-CREATE TABLE results (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    personality_type VARCHAR(50) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 
 
 
-CREATE TABLE data (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    personality_type VARCHAR(50) NOT NULL,
-    result_group VARCHAR(50) NOT NULL,
-    aspects TEXT NOT NULL,
-    description_links TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+
+
+
+
 
 INSERT INTO data (personality_type, result_group, aspects, description_links)
 VALUES
@@ -131,6 +150,8 @@ VALUES
 ('ISFP', 'Artisans', 'The Composer', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=4&c=Composer'),
 ('ISTJ', 'Guardians', 'The Inspector', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=2&c=inspector'),
 ('ISTP', 'Artisans', 'The Crafter', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=4&c=crafter');
+
+
 
 
 

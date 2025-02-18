@@ -38,31 +38,30 @@ class Results
     }
 
     public function getAlldata()
-{
-    $data = [];
+    {
+        $data = [];
 
-    $query = "SELECT u.username, r.personality_type, d.result_group, d.aspects 
+        $query = "SELECT u.username, r.personality_type, d.result_group, d.aspects 
               FROM users u 
               JOIN results r ON u.id = r.user_id
               JOIN data d ON r.personality_type = d.personality_type
               ORDER BY u.id ASC";  // Sort by user ID (older first, newer last)
 
-    $stmt = $this->conn->prepare($query);
-    if (!$stmt) {
-        error_log("Prepare failed: " . $this->conn->error);
-        return false;
+        $stmt = $this->conn->prepare($query);
+        if (!$stmt) {
+            error_log("Prepare failed: " . $this->conn->error);
+            return false;
+        }
+        if (!$stmt->execute()) {
+            error_log("Execute failed: " . $stmt->error);
+            return false;
+        }
+
+        $data['results'] = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+
+        return $data;
     }
-    if (!$stmt->execute()) {
-        error_log("Execute failed: " . $stmt->error);
-        return false;
-    }
-
-    $data['results'] = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    $stmt->close();
-
-    return $data;
-}
-
 
     public function getDataByUserId($user_id)
     {
@@ -116,7 +115,7 @@ class Results
 
         $token = bin2hex(random_bytes(50));
         $expiry = date("Y-m-d H:i:s", strtotime("+1 hour"));
-        $resetLink = "http://keirsey-temperament-sorter.test/pages/report.php?token=$token";
+        $resetLink = "http://144.202.23.55/pages/report.php?token=$token";
 
         // Store the token in the database
         $query = "INSERT INTO result_tokens (user_id, token, expiry) VALUES (?, ?, ?)";
@@ -141,7 +140,7 @@ class Results
 
             $mail->isHTML(false);
             $mail->Subject = 'Result Share';
-            $mail->Body = "Click the link below to check your result:\n\n$resetLink\n\nThis link will expire in 1 hour.";
+            $mail->Body = "Click the link below to check your result:\n\n$resetLink\n\n";
 
             $mail->send();
             error_log("Email sent successfully to $email");

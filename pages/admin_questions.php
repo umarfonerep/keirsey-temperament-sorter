@@ -3,8 +3,6 @@ session_start();
 require_once '../includes/db.php';
 require_once '../includes/question.php';
 require_once '../includes/auth.php';
-// var_dump($_SESSION['role'] );
-// die;
  if (!isLoggedIn() || $_SESSION['role'] !== 'admin' ) {
     header("Location: ../pages/login.php");
     exit();
@@ -92,6 +90,7 @@ include 'navbar.php';
         <table class="table table-bordered table-light mt-3">
             <thead>
                 <tr>
+                    <th>Question NO</th>
                     <th>Question</th>
                     <th>Action</th>
                 </tr>
@@ -99,6 +98,7 @@ include 'navbar.php';
             <tbody>
                 <?php foreach ($questions as $question): ?>
                     <tr>
+                        <td><?php echo $question['qid']; ?></td>
                         <td><?php echo $question['qtext']; ?></td>
                         <td><a href="question-edit.php?id=<?php echo $question['qid']; ?>" class="btn btn-warning">Edit</a></td>
                     </tr>
@@ -109,27 +109,6 @@ include 'navbar.php';
     </div>
 </nav>
 
-<!-- Questions Section -->
-<div class="container mt-5 container-content">
-    <h2 class="text-dark">Manage Questions</h2>
-    <table class="table table-bordered table-light mt-3">
-        <thead>
-            <tr>
-                <th>Question</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><p>When the phone rings, you hurry to get to it first and don't hope someone else gets it.</p></td>
-                <td>
-                    <button class="btn btn-warning">Edit</button>
-                    <button class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
 
 <!-- Footer (Sticks to Bottom) -->
 <footer class="footer mt-auto">

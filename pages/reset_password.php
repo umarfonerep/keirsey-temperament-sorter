@@ -78,7 +78,7 @@ if (!$token) {
                                         <input type="password" id="new_password" name="new_password" class="form-control form-control-lg" required>
                                         <label class="form-label" for="new_password">New Password</label>
                                     </div>
-                                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Reset Password</button>
+                                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Change Password</button>
                                 </form>
 
                                 <div class="d-flex justify-content-center text-center mt-4 pt-1">

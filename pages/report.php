@@ -5,17 +5,14 @@ include '../includes/results.php';
 include '../includes/auth.php';
 
 date_default_timezone_set('UTC');
-
 $conn->query("SET time_zone = '+00:00';");
 
 if (!isset($_GET['token'])) {
     die("Invalid request. Token is missing.");
 }
-
+// Fetch data base on token
 $token = $_GET['token'];
-error_log("Token from URL: " . $token);
-
-$query = "SELECT user_id, expiry FROM result_tokens WHERE token = ? AND expiry > NOW()";
+$query = "SELECT user_id, expiry FROM result_tokens WHERE token = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s", $token);
 $stmt->execute();
@@ -24,14 +21,25 @@ $result = $stmt->get_result();
 if ($result->num_rows === 0) {
     echo "Invalid or expired token.";
 }
-
 $row = $result->fetch_assoc();
+// Fetch username
 $user_id = $row['user_id'];
-error_log("User ID from token: " . $user_id);
-
+$query = "SELECT username FROM users WHERE id = ?"; 
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $user_id); 
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $username = $row['username']; 
+} else {
+    echo "No user found with ID: " . $user_id; 
+}
 // Fetch result data
 $resultsobj = new Results($conn);
 $userResultData = (!empty($resultsobj->getDataByUserId($user_id))) ? $resultsobj->getDataByUserId($user_id) : [];
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -122,12 +130,14 @@ $userResultData = (!empty($resultsobj->getDataByUserId($user_id))) ? $resultsobj
     <div class="container-content">
         <div class="card">
             <!-- Page Heading -->
-            <h1 class="heading">Keirsey Temperament Test Report</h1>
+            <h1 class="heading">Keirsey Temperament Test Report </h1>
 
             <!-- Results Table (Same as `admin_results.php`) -->
             <table class="table table-bordered report-table">
                 <thead>
                     <tr>
+
+                        <th>Name</th>
                         <th>Type</th>
                         <th>Group</th>
                         <th>Aspect</th>
@@ -136,7 +146,7 @@ $userResultData = (!empty($resultsobj->getDataByUserId($user_id))) ? $resultsobj
                 </thead>
                 <tbody>
                     <?php foreach ($userResultData  as $resultdata): ?>
-                        <tr>
+                        <tr><td><?php echo htmlspecialchars($username, ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo htmlspecialchars($resultdata["personality_type"], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo htmlspecialchars($resultdata["result_group"], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo htmlspecialchars($resultdata["aspects"], ENT_QUOTES, 'UTF-8'); ?></td>

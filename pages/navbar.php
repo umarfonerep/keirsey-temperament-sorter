@@ -14,7 +14,7 @@ session_start();
                     
                 <li class="nav-item"><a class="nav-link active" href="admin_dashboard.php">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="admin_questions.php">Questions</a></li>
-                <li class="nav-item"><a class="nav-link" href="admin_results.php">Results</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="admin_results.php">Results</a></li> -->
                 <?php } ?>
                 <li><div class="ms-auto">
                 <a href="../includes/logout.php" class="btn btn-logout">Logout</a>

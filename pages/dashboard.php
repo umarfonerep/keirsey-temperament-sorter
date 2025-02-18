@@ -12,17 +12,8 @@ if (!isLoggedIn() || $_SESSION['role'] !== 'user') {
 
 $userid = $_SESSION['user_id'];
 
-    $responces = new Responces($conn);
-    $responces_question = $responces->getReponces($userid);
-
-    // if (!empty($responces_question) && isset($responces_question[0]['question_responce'])) {
-    //     $responses_encode = json_decode($responces_question[0]['question_responce'], true);
-    // } else {
-    //     $responses_encode = []; 
-    // }
-
-    // $resultsobj = new Results($conn);
-    // $resultdatas = (!empty($responses_encode)) ? $resultsobj->process($responses_encode, $userid) : [];
+$responces = new Responces($conn);
+$responces_question = $responces->getReponces($userid);
 
 $resultsobj = new Results($conn);
 $resultdatas = (!empty($resultsobj->getDataByUserId($userid))) ? $resultsobj->getDataByUserId($userid) : [];

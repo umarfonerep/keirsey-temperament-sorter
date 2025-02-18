@@ -61,14 +61,13 @@ function sendPasswordResetLink($email, $mysqli)
     $user = $result->fetch_assoc();
 
     $result->free();
-
     if ($user) {
         $token = bin2hex(random_bytes(50));
         $expiry = date("Y-m-d H:i:s", strtotime("+1 hour"));
         $stmt = $mysqli->prepare("UPDATE users SET reset_token = ?, reset_token_expiry = ? WHERE email = ?");
         $stmt->bind_param("sss", $token, $expiry, $email);
         $stmt->execute();
-        $resetLink = "http://keirsey-temperament-sorter.test/pages/reset_password.php?token=$token";
+        $resetLink = "http://144.202.23.55/pages/reset_password.php?token=$token";
         $mail = new PHPMailer(true);
 
         try {

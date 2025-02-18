@@ -43,10 +43,7 @@ $resultdatas = (!empty($resultsobj->getDataByUserId($userid))) ? $resultsobj->ge
     <link rel="stylesheet" href="../style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        .table thead {
-            background-color: #1E7AC2 !important;
-            color: white;
-        }
+        
         .btn-custom {
             width: 200px;
             margin: 10px;
@@ -59,6 +56,27 @@ $resultdatas = (!empty($resultsobj->getDataByUserId($userid))) ? $resultsobj->ge
             color: white;
             border: 2px solid #F77F2E;
         }
+     @media (max-width: 768px) {
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+        table-layout: fixed; /* Ensures columns adjust */
+        word-wrap: break-word; /* Allows text to break into the next line */
+        white-space: normal; /* Enables text wrapping */
+    }
+
+    .table th, 
+    .table td {
+        word-break: break-word; /* Forces words to wrap */
+        text-align: center; /* Centers content */
+    }
+}
+
+        
     </style>
 </head>
 
@@ -74,9 +92,9 @@ include 'navbar.php';
         <h1>Keirsey Temperament Test</h1>
         <div class="table-responsive">
             <?php if (!empty($resultdatas)): ?>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr style="background-color: #1E7AC2;">
+                <table class="table table-bordered table-responsive">
+                <thead>
+                        <tr style="background-color: #1E7AC2 !important; color: white !important;">
                             <th>Type</th>
                             <th>Group</th>
                             <th>Aspect</th>

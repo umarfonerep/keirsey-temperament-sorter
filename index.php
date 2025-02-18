@@ -10,6 +10,14 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 </head>
+<style>
+    @media(max-width: 1050px) {
+        .index-content{
+    padding: 1rem !important;
+  }
+}
+
+</style>
 
 <body>
     <!-- Navbar -->
@@ -26,7 +34,6 @@
             </li>
             </ul>
         </div>
-<<<<<<< HEAD
     </div>
 </nav>
 <!-- Dashboard Content -->
@@ -34,18 +41,7 @@
 <div class="container-content index-content">
         <h1>Keirsey Temperament Test</h1>
         <p class="text-center">The Keirsey Temperament Test is a personality assessment tool that helps individuals understand their temperament, communication style, and behavior patterns. Based on Dr. David Keirsey's research, the test categorizes people into four main temperaments: Guardian, Artisan, Idealist, and Rational. Each temperament reflects distinct preferences in how individuals interact with others, make decisions, and respond to their environment. This test is widely used in personal development, career counseling, and team building to foster better communication and collaboration.</p>
-        <a href="test.php"><button class="btn btn-custom bg-color">Take Test</button></a>
-=======
-
-        </div>
-    </nav>
-    <!-- Dashboard Content -->
-    <div class="container">
-        <div class="container-content index-content">
-            <h1>Keirsey Temperament Test</h1>
-            <p>The Keirsey Temperament Test is a personality assessment tool that helps individuals understand their temperament, communication style, and behavior patterns. Based on Dr. David Keirsey's research, the test categorizes people into four main temperaments: Guardian, Artisan, Idealist, and Rational. Each temperament reflects distinct preferences in how individuals interact with others, make decisions, and respond to their environment. This test is widely used in personal development, career counseling, and team building to foster better communication and collaboration.</p>
-            <a href="/pages/test.php"><button class="btn btn-custom bg-color">Take Test</button></a>
->>>>>>> 7c923ce1b9231c6383f88f1581697d3da9860e20
+        <a href="./pages/test.php"><button class="btn btn-custom bg-color">Take Test</button></a>
         </div>
     </div>
 </body>

@@ -19,41 +19,46 @@ $resultdatas = $data['results'];
 
     <link rel="stylesheet" href="../style.css">
 
-</head>
+</head>     
 <body>
-
-
+<style>
+    .result-container-content {
+           flex-grow: 1;
+        }
+       .table thead {
+           background-color: #1E7AC2;
+           color: white;
+        }
+</style>
 <?php
 include 'navbar.php';
 ?>
-<!-- Admin Dashboard Content -->
-<!-- Dashboard Content -->
-<div class="container-content">
-        <h1 class= "heading">Keirsey Temperament Test</h1>
-   
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead class="table-dark">
-                    <tr style="background-color: #1E7AC2;">
-                        <th>User Name</th>
-                        <th>Personality Type</th>
-                        <th>Group</th>
-                        <th>Aspects</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($resultdatas as $resultdata): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($resultdata["username"], ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php echo htmlspecialchars($resultdata["personality_type"], ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php echo htmlspecialchars($resultdata["result_group"], ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php echo htmlspecialchars($resultdata["aspects"], ENT_QUOTES, 'UTF-8'); ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
 
-        </div>
+
+<div class="container mt-5 result-container-content">
+    <h2 class="text-center mb-4">Results</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+    <thead> <!-- Changed class and added text-white -->
+        <tr class="table-primary"> 
+            <th>User Name</th>
+            <th>Type</th>
+            <th>Group</th>
+            <th>Aspect</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($resultdatas as $resultdata): ?>
+            <tr>
+                <td><?php echo htmlspecialchars($resultdata["username"], ENT_QUOTES, 'UTF-8'); ?></td>
+                <td><?php echo htmlspecialchars($resultdata["personality_type"], ENT_QUOTES, 'UTF-8'); ?></td>
+                <td><?php echo htmlspecialchars($resultdata["result_group"], ENT_QUOTES, 'UTF-8'); ?></td>
+                <td><?php echo htmlspecialchars($resultdata["aspects"], ENT_QUOTES, 'UTF-8'); ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
     </div>
     <?php
       include 'footer.php'
@@ -62,5 +67,4 @@ include 'navbar.php';
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>

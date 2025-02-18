@@ -61,7 +61,7 @@
                   <form action="" method="POST">
                     <div data-mdb-input-init class="form-outline form-white mb-4 text-align">
                       <label class="form-label" for="typeEmailX">Email</label>
-                      <input type="email" id="typeEmailX" class="form-control form-control-lg" name="email" value="<?php echo $email ?>" />
+                      <input type="email" id="typeEmailX" class="form-control form-control-lg" name="email"  />
                       <?php if (!empty($inemail)): ?>
             <div class="error-message text-center text-danger text-red-50"><?php echo htmlspecialchars($inemail); ?></div>
         <?php endif; ?>

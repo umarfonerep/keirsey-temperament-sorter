@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!-- Heading with Reset Button -->
             <div class="d-flex justify-content-between align-items-center">
-                <h1 class="fw-bold text-uppercase text-start mb-0">Keirsey Temperament Test</h1>
+                <h1 class="fw-bold text-uppercase text-white text-start mb-0">Keirsey Temperament Test</h1>
                 <button id="resetButton" class="btn btn-outline-light">Reset</button>
             </div>
             <hr class="text-white">

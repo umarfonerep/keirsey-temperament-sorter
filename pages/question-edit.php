@@ -39,8 +39,7 @@ include 'navbar.php';
             <form method="POST">
                 <div class="mb-3">
                     <label class="form-label fw-bold">Question</label>
-
-                    <input type="text" class="form-control" name="heading" 
+                    <input type="text" class="form-control" name="heading"
 
                         value="<?php echo htmlspecialchars($question[0]['qtext']); ?>">
                 </div>

@@ -39,13 +39,6 @@ if (!$token) {
     die("Invalid token.");
 }
 
-// $result = resetPassword($token, $new_password, $conn);
-
-// if ($result === "Password reset successfully!") {
-//     $success = $result;
-// } else {
-//     $error = $result;
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,9 +53,9 @@ if (!$token) {
 <body>
     <section class="vh-100 gradient-custom">
         <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="row d-flex justify-content-center align-items-center py-5">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card  text-white" style="border-radius: 1rem; border-radius: 1rem; background-color: #1E7AC2;">
                         <div class="card-body p-5 text-center">
                             <div class="mb-md-5 mt-md-4 pb-5">
                                 <h2 class="fw-bold mb-2 text-uppercase">Reset Password</h2>
@@ -78,7 +71,7 @@ if (!$token) {
                                         <input type="password" id="new_password" name="new_password" class="form-control form-control-lg" required>
                                         <label class="form-label" for="new_password">New Password</label>
                                     </div>
-                                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Reset Password</button>
+                                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Change Password</button>
                                 </form>
 
                                 <div class="d-flex justify-content-center text-center mt-4 pt-1">
@@ -94,5 +87,4 @@ if (!$token) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

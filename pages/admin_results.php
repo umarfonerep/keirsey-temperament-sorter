@@ -5,66 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Results</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet"> <!-- Custom styles if needed -->
+    <link href="../style.css" rel="stylesheet"> <!-- Custom styles if needed -->
     <style>
-        /* Ensure full-page layout */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
+       .result-container-content {
+           flex-grow: 1;
         }
-
-        /* Navbar */
-        .navbar {
-            background-color: #1E7AC2;
-            padding: 10px 0;
-        }
-        .navbar-brand img {
-            height: 80px;
-        }
-        .nav-item{
-            margin-right: 1.5rem;
-        }
-        .navbar .nav-link {
-            color: white !important;
-            font-weight: bold;
-        }
-        .btn-logout {
-            background-color: #F77F2E;
-            color: white;
-            /* border: 2px solid white; */
-        }
-
-        .btn-logout:hover {
-            background-color: black;
-            color: white;
-        }
-
-        .navbar .nav-link:hover {
-            color: #f8f9fa !important;
-        }
-
-        /* Main Content (pushes footer down) */
-        .container-content {
-            flex-grow: 1; /* This makes sure the content expands and pushes footer to bottom */
-        }
-
-        /* Results Table */
-        .table thead {
-            background-color: #1E7AC2;
-            color: white;
-        }
-
-        /* Sticky Footer */
-        .footer {
-            background-color: #f8f9fa;
-            padding: 10px 0;
-            text-align: center;
-            font-size: 14px;
-            color: #555;
-            width: 100%;
+       .table thead {
+           background-color: #1E7AC2;
+           color: white;
         }
     </style>
 </head>
@@ -76,7 +24,7 @@ include 'navbar.php';
 ?>
 
 <!-- Results Section -->
-<div class="container mt-5 container-content">
+<div class="container mt-5 result-container-content">
     <h2 class="text-center mb-4">Results</h2>
     <div class="table-responsive">
         <table class="table table-bordered">

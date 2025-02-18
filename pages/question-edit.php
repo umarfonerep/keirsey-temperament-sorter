@@ -39,7 +39,11 @@ include 'navbar.php';
             <form method="POST">
                 <div class="mb-3">
                     <label class="form-label fw-bold">Question</label>
+<<<<<<< HEAD
+                    <input type="text" class="form-control" name="heading" 
+=======
                     <input type="text" class="form-control" name="heading"
+>>>>>>> 7c923ce1b9231c6383f88f1581697d3da9860e20
                         value="<?php echo htmlspecialchars($question[0]['qtext']); ?>">
                 </div>
                 <div class="text-center">
@@ -49,6 +53,11 @@ include 'navbar.php';
         </div>
     </div>
 </div>
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 7c923ce1b9231c6383f88f1581697d3da9860e20
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

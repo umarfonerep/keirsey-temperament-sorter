@@ -31,56 +31,13 @@ $resultdatas = (!empty($resultsobj->getDataByUserId($userid))) ? $resultsobj->ge
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        body {
-            background-color: white;
-            color: black;
-        }
-
-        .navbar {
-            background-color: #1E7AC2;
-            /* border-bottom: 1px solid black; */
-        }
-
-        .navbar-brand img {
-            height: 80px;
-            /* Adjust the logo size */
-        }
-
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white !important;
-        }
         .table thead {
             background-color: #1E7AC2 !important;
             color: white;
         }
-
-        .nav-link {
-            color: white !important;
-        }
-
-        .btn-logout {
-            background-color: #F77F2E;
-            color: white;
-            /* border: 2px solid white; */
-        }
-
-        .btn-logout:hover {
-            background-color: black;
-            color: white;
-        }
-
-        .container-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 85vh;
-        }
-
         .btn-custom {
             width: 200px;
             margin: 10px;
@@ -88,24 +45,10 @@ $resultdatas = (!empty($resultsobj->getDataByUserId($userid))) ? $resultsobj->ge
             color: black;
 
         }
-
         .btn-custom:hover {
             background-color: #F77F2E;
             color: white;
-        }
-
-        .bg-color {
-            background-color: #1E7AC2;
-            color: white !important;
-        }
-        /* Footer */
-        .footer {
-            background-color: #f8f9fa;
-            padding: 10px 0;
-            text-align: center;
-            font-size: 14px;
-            color: #555;
-            width: 100%;
+            border: 2px solid #F77F2E;
         }
     </style>
 </head>

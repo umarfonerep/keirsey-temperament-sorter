@@ -125,16 +125,8 @@ VALUES
 ('You are more thick-skinned than thin-skinned.'),
 ('You tend to notice disorderliness more than opportunities for change.'),
 ('You are more routine than whimsical.');
-  
 
-
-
-
-
-
-
-
-INSERT INTO data (personality_type, result_group, aspects, description_links, displayed_behaviours, careers)
+INSERT INTO data (personality_type, result_group, aspects, description_links)
 VALUES
 ('ENFJ', 'Idealists', 'The Teacher', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=3&c=teacher', 'Outgoing, social, attention seeking, emotional, loving, organized, comfortable around others, involved, open, hyperactive, complimentary, punctual, considerate, altruistic, easily hurt, religious, neat, content, positive, affectionate, image-conscious, good at getting people to have fun, easily excited, perfectionist, assertive, ambitious, leader, hard-working, seductive, touchy, group-oriented, anti-tattoos.', 'Casting directory, film critic, wedding planner, work in the performing arts, teacher (art, preschool, elementary), actor, fashion designer, news anchor, fashion merchandiser, school psychologist, broadcaster, stylist, interior designer, event coordinator, restaurant owner, childcare worker, hair stylist, film director, counselor, dancer.'),
 ('ENFP', 'Idealists', 'The Champion', 'http://www.keirsey.com/handler.aspx?s=keirsey&f=fourtemps&tab=3&c=champion', 'Outgoing, social, disorganized, easily talked into doing silly things, spontaneous, wild and crazy, acts without thinking, good at getting people to have fun, pleasure seeking, irresponsible, physically affectionate, risk taker, thrill seeker, likely to have or want a tattoo, adventurous, unprepared, attention seeking, hyperactive, irrational, loves crowds, rule breaker, prone to losing things, seductive, easily distracted, open, revealing, comfortable in unfamiliar situations, attracted to strange things, non-punctual, likes to stand out, likes to try new things, fun seeker, unconventional, energetic, impulsive, empathetic, dangerous, loving, attachment prone, prone to fantasy.', 'Performer, actor, entertainer, songwriter, musician, filmmaker, comedian, radio broadcaster/DJ, some job related to theater/drama, poet, music journalist, work in fashion industry, singer, movie producer, playwright, bartender, comic book author, work in television, dancer, artist, record store owner, model, freelance artist, teacher (art, drama, music), writer, painter, massage therapist, costume designer, choreographer, make-up artist.'),

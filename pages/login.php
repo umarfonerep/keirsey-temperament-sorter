@@ -1,17 +1,17 @@
 <?php
-  session_start();
-  include '../includes/db.php';
-  include '../includes/auth.php';
+session_start();
+include '../includes/db.php';
+include '../includes/auth.php';
 
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    if (empty($email)) {
-      $inemail = "Email is required.";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  if (empty($email)) {
+    $inemail = "Email is required.";
   } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $inemail = "Invalid email format.";
   } elseif (empty($password)) {
-      $pas = "Password is required.";
+    $pas = "Password is required.";
   } else {
     if (loginUser($email, $password, $conn)) {
       if ($_SESSION['role'] === 'admin') {
@@ -61,24 +61,24 @@
                   <form action="" method="POST">
                     <div data-mdb-input-init class="form-outline form-white mb-4 text-align">
                       <label class="form-label" for="typeEmailX">Email</label>
-                      <input type="email" id="typeEmailX" class="form-control form-control-lg" name="email"  />
+                      <input type="email" id="typeEmailX" class="form-control form-control-lg" name="email" value="<?php echo $email ?>" />
                       <?php if (!empty($inemail)): ?>
             <div class="error-message text-center text-danger text-red-50"><?php echo htmlspecialchars($inemail); ?></div>
         <?php endif; ?>
                     </div>
 
-                    <div data-mdb-input-init class="form-outline form-white mb-4">
-                      <label class="form-label" for="typePasswordX">Password</label>
-                      <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" />
-                      <?php if (!empty($pas)): ?>
-            <div class="error-message text-center text-danger text-red-50"><?php echo htmlspecialchars($pas); ?></div>
-        <?php endif; ?>
-                    </div>
+                  <div data-mdb-input-init class="form-outline form-white mb-4">
+                    <label class="form-label" for="typePasswordX">Password</label>
+                    <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" />
+                    <?php if (!empty($pas)): ?>
+                      <div class="error-message text-center text-danger text-red-50"><?php echo htmlspecialchars($pas); ?></div>
+                    <?php endif; ?>
+                  </div>
 
-                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="forgot_password.php">Forgot password?</a></p>
+                  <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="forgot_password.php">Forgot password?</a></p>
 
-                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
-                  </form>
+                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                </form>
               </div>
 
               <div>

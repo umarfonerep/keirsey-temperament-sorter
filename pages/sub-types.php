@@ -1,9 +1,21 @@
+<?php 
+include '../includes/db.php';
+include '../includes/data.php';
+
+$dataobj = new Data($conn);
+$getdata = $dataobj->getData();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Sixteen Buttons with Popup</title>
+
+    <title>sub type personalty</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -28,7 +40,6 @@
             align-items: center;
             z-index: 1000;
         }
-
         /* Popup Content Box */
         .popup-content {
             background: white;
@@ -39,7 +50,8 @@
             position: relative;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
             text-align: center;
-        }
+        
+
 
         /* Close Button */
         .popup-close {
@@ -66,10 +78,19 @@
             margin-top: 15px;
         }
 
+
         .popup-section {
             flex: 1;
             padding: 10px;
             background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+
+        .popup-section {
+            flex: 1;
+            padding: 10px;
+            background: #F8F9FA;
             border-radius: 5px;
         }
 
@@ -78,6 +99,12 @@
             .button-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+
+            .popup-content {
+                width: 90%;
+            }
+
 
             .popup-content {
                 width: 90%;
@@ -91,6 +118,7 @@
     </style>
 </head>
 <body>
+
 <?php 
 include 'navbar.php';
 ?>
@@ -103,12 +131,26 @@ include 'navbar.php';
         <?php endfor; ?>
     </div>
 </div>
+    <div class="button-grid">
+        <?php foreach ($getdata as $key => $getdata): ?>
+            <button class="btn btn-primary w-100" onclick="showPopup(
+                '<?php echo $getdata['personality_type']; ?>',
+                '<?php echo addslashes($getdata['displayed_behaviours']); ?>',
+                '<?php echo addslashes($getdata['careers']); ?>',
+                '<?php echo ($getdata['result_group']); ?>'
+            )">
+                <?php echo $getdata['personality_type']; ?>
+            </button>
+        <?php endforeach; ?>
+    </div>
+</div>
 
-
+ 
 <!-- Custom Popup (Initially Hidden) -->
 <div class="popup-overlay" id="popupOverlay">
     <div class="popup-content">
         <span class="popup-close" onclick="closePopup()">&times;</span>
+
         <h5 class="popup-title">Popup Information</h5>
         <div class="popup-body">
             <div class="popup-section">
@@ -118,10 +160,22 @@ include 'navbar.php';
             <div class="popup-section">
                 <h5 class="popup-heading" id="popupHeading2">Heading 2</h5>
                 <p id="popupText2">Performer, actor, entertainer, songwriter, musician, filmmaker, comedian, radio broadcaster/DJ, some job related to theater/drama, poet, music journalist, work in fashion industry, singer, movie producer, playwright, bartender, comic book author, work in television, dancer, artist, record store owner, model, freelance artist, teacher (art, drama, music), writer, painter, massage therapist, costume designer, choreographer, make-up artist.</p>
+ 
+        <h5 class="popup-title" id="popuptitle">Group</h5>
+        <div class="popup-body">
+            <div class="popup-section">
+                <h5 class="popup-heading" id="popupHeading1">Displayed Behaviours</h5>
+                <p id="popupText1"></p>
+            </div>
+            <div class="popup-section">
+                <h5 class="popup-heading" id="popupHeading2">Careers</h5>
+                <p id="popupText2"></p>
+     
             </div>
         </div>
     </div>
 </div>
+ 
 
 <script>
     function showPopup(buttonNumber) {
@@ -152,3 +206,5 @@ include 'navbar.php';
 
 </body>
 </html>
+
+ 

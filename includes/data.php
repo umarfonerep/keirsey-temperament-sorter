@@ -1,5 +1,4 @@
 <?php
-
 class Data {
 
     private $conn;
@@ -9,7 +8,8 @@ class Data {
         $this->conn = $db;
     }
 
-    public function getData(){
+    public function getData()
+    {
         $query = "SELECT personality_type,result_group,displayed_behaviours,careers FROM data ";
         $stmt = $this->conn->prepare($query);
         
@@ -25,6 +25,7 @@ class Data {
             return [];
         }
     }
+
 }
 
 ?>

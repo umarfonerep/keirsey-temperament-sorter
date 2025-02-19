@@ -142,7 +142,7 @@ include 'navbar.php';
         <h1>Keirsey Temperament Test</h1>
         <div class="table-responsive">
             <?php if (!empty($resultdatas)): ?>
-                <table class="table table-bordered table-responsive">
+                <table class="table table-bordered table-responsive"> 
                 <thead>
                         <tr style="background-color: #1E7AC2 !important; color: white !important;">
                             <th>Type</th>

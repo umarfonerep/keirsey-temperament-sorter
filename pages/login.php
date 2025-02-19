@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                 <p class="text-white-50 mb-5">Please enter your login and password!</p>
                 <?php if (!empty($error)): ?>
-<<<<<<< HEAD
+
             <div class="error-message text-center text-danger text-red-50"><?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
                   <form action="" method="POST">
@@ -67,18 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="error-message text-center text-danger text-red-50"><?php echo htmlspecialchars($inemail); ?></div>
         <?php endif; ?>
                     </div>
-=======
-                  <div class="error-message text-center text-danger text-red-50"><?php echo htmlspecialchars($error); ?></div>
-                <?php endif; ?>
-                <form action="" method="POST">
-                  <div data-mdb-input-init class="form-outline form-white mb-4 text-align">
-                    <label class="form-label" for="typeEmailX">Email</label>
-                    <input type="email" id="typeEmailX" class="form-control form-control-lg" name="email" value="" />
-                    <?php if (!empty($inemail)): ?>
-                      <div class="error-message text-center text-danger text-red-50"><?php echo htmlspecialchars($inemail); ?></div>
-                    <?php endif; ?>
-                  </div>
->>>>>>> 8d8fd68bf1d9ce798cb160710b5aa80ee67af68f
+
 
                   <div data-mdb-input-init class="form-outline form-white mb-4">
                     <label class="form-label" for="typePasswordX">Password</label>

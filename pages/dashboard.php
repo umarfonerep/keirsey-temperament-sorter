@@ -184,7 +184,7 @@ include 'navbar.php';
 
     <!-- Right-aligned Button -->
     <div>
-    <a href="test.php"><button class="btn btn-custom">Show Graph</button></a>
+    <a href="chart.php"><button class="btn btn-custom">Show Graph</button></a>
     <a href="sub-types.php"><button class="btn btn-custom text-white btn-primary">See More Personalities</button></a>
     </div>
 </div>

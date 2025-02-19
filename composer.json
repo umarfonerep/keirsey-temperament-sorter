@@ -1,6 +1,5 @@
 {
     "require": {
-        "phpmailer/phpmailer": "^6.9",
         "jpgraph/jpgraph": "4.4.2"
     }
 }

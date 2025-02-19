@@ -15,8 +15,7 @@ $responces_question = $responseObj->getReponces($userid);
 
 // Decode responses
 $responses_encode = !empty($responces_question) && isset($responces_question[0]['question_responce'])
-    ? json_decode($responces_question[0]['question_responce'], true)
-    : [];
+    ? json_decode($responces_question[0]['question_responce'], true) : [];
 
 // Process responses to get MBTI scores
 $taritsresult = $resultsObj->process($responses_encode, $userid);

@@ -4,7 +4,7 @@ session_start();
 ?> -->
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-        <a class="navbar-brand" href="../includes/logout.php"><img src="../assets/LOGO.png" alt="Logo" height="40"></a>
+        <a class="navbar-brand" href="dashboard.php"><img src="../assets/LOGO.png" alt="Logo" height="40"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>

@@ -87,7 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!-- Heading with Reset Button -->
             <div class="d-flex justify-content-between align-items-center">
-                <h1 class="fw-bold text-uppercase text-start mb-0">Keirsey Temperament Test</h1>
+            <a href="dashboard.php" class="btn btn-outline-light">Back</a>
+                <h1 class="fw-bold text-uppercase text-start mb-0 text-white">Keirsey Temperament Test</h1>
                 <button id="resetButton" class="btn btn-outline-light">Reset</button>
             </div>
             <hr class="text-white">
@@ -125,7 +126,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Footer (Sticks to Bottom) -->
     <footer class="footer mt-auto">
         <div class="container">
-            &copy; 2025 Keirsey Temperament Test. All Rights Reserved.
+            <?php
+            include 'footer.php';
+            ?>
         </div>
     </footer>
 

@@ -11,44 +11,34 @@ function isLoggedIn()
 }
 
 
-function registerUser($username, $first_name, $last_name, $phone, $email, $password, $conn)
+function registerUser($username, $first_name, $last_name, $phone, $organisation_name, $email, $password, $conn)
 {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password, first_name, last_name, phone ) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO users (username, email, password, first_name, last_name, phone, organization_name ) VALUES (?, ?, ?, ?, ?, ?, ?)");
     if ($stmt) {
-        $stmt->bind_param("ssssss", $username, $email, $hashedPassword, $first_name, $last_name, $phone);
+        $stmt->bind_param("sssssss", $username, $email, $hashedPassword, $first_name, $last_name, $phone,$organisation_name);
         return $stmt->execute();
     } else {
         return false;
     }
 }
 
-function loginUser($email, $password, $conn)
+function loginUser($loginInput, $password, $conn)
 {
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-    if (!$stmt) {
-        error_log("Prepare failed: " . $conn->error);
-        return false;
-    }
 
-    $stmt->bind_param("s", $email);
-    if (!$stmt->execute()) {
-        error_log("Execute failed: " . $stmt->error);
-        return false;
-    }
-
+    $query = "SELECT * FROM users WHERE email = ? OR username = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ss", $loginInput, $loginInput);
+    $stmt->execute();
     $result = $stmt->get_result();
-    if ($result->num_rows === 0) {
-        return false;
-    }
-
     $user = $result->fetch_assoc();
+
     if ($user && password_verify($password, $user['password'])) {
+        session_start();
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['role'] = $user['role'];
         return true;
     }
-
     return false;
 }
 
@@ -67,7 +57,7 @@ function sendPasswordResetLink($email, $mysqli)
         $stmt = $mysqli->prepare("UPDATE users SET reset_token = ?, reset_token_expiry = ? WHERE email = ?");
         $stmt->bind_param("sss", $token, $expiry, $email);
         $stmt->execute();
-        $resetLink = "http://144.202.23.55/pages/reset_password.php?token=$token";
+        $resetLink = "http://keirsey-temperament-sorter.test/pages/reset_password.php?token=$token";
         $mail = new PHPMailer(true);
 
         try {

@@ -4,16 +4,16 @@ include '../includes/db.php';
 include '../includes/auth.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $email = $_POST['email'];
+  $loginInput = $_POST['email'];
   $password = $_POST['password'];
-  if (empty($email)) {
+  if (empty($loginInput)) {
     $inemail = "Email is required.";
-  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  } elseif (!filter_var($loginInput, FILTER_VALIDATE_EMAIL)) {
     $inemail = "Invalid email format.";
   } elseif (empty($password)) {
     $pas = "Password is required.";
   } else {
-    if (loginUser($email, $password, $conn)) {
+    if (loginUser($loginInput, $password, $conn)) {
       if ($_SESSION['role'] === 'admin') {
         header("Location: admin_dashboard.php");
       } else {
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="card-body p-5 text-center">
               <!-- Logo Section -->
               <div class="mb-4">
-                <img src="../assets/logo.png" alt="Logo" class="img-fluid" style="max-width: 150px;">
+                <a class="navbar-brand" href="dashboard.php"><img src="../assets/LOGO.png" alt="Logo" height="40"></a>
               </div>
 
               <div class="mb-md-5 mt-md-4 pb-5 ">

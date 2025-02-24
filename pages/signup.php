@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $phone = $_POST['phone'];
+    $organisation_name = $_POST['organisation_name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
@@ -61,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // If no errors, proceed with registration
     if (empty($uname) && empty($inemail) && empty($paswd) && empty($conpswd)) {
-        if (registerUser($username, $first_name, $last_name, $phone, $email, $password, $conn)) {
+        if (registerUser($username, $first_name, $last_name, $phone, $organisation_name, $email, $password, $conn)) {
             header("Location: login.php");
             exit();
         } else {
@@ -128,7 +129,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <input type="text" id="signupPhone" class="form-control form-control-lg" name="phone" />
                                         <span class="error"></span>
                                     </div>
-                                    <div class="col-12 mb-3">
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label" for="signupPhone">Organisation Name</label>
+                                        <input type="text" id="signupPhone" class="form-control form-control-lg" name="organisation_name" />
+                                        <span class="error"></span>
+                                    </div>
+                                    <div class="col-6 mb-3">
                                         <label class="form-label" for="signupEmail">Email*</label>
                                         <input type="email" id="signupEmail" class="form-control form-control-lg input-lg" name="email" />
                                         <?php if (!empty($inemail)): ?>

@@ -10,7 +10,7 @@ class Data {
 
     public function getData()
     {
-        $query = "SELECT personality_type,result_group,displayed_behaviours,careers FROM data ";
+        $query = "SELECT personality_type,result_group, descriptor,displayed_behaviours,careers FROM data ";
         $stmt = $this->conn->prepare($query);
         
         if ($stmt) {

@@ -157,7 +157,7 @@ $userResultData = (!empty($resultsobj->getDataByUserId($user_id))) ? $resultsobj
             
             <!-- Logo Section -->
             <div class="logo-container">
-                <img src="../assets/logo.png" alt="Logo">
+                <img src="../assets/LOGO.png" alt="Logo">
             </div>
 
             <!-- Page Heading -->

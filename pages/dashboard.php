@@ -136,6 +136,7 @@ $resultdatas = (!empty($resultsobj->getDataByUserId($userid))) ? $resultsobj->ge
                             <th>Type</th>
                             <th>Group</th>
                             <th>Aspect</th>
+                            <th>Discriptor</th>
                             <th>Displayed Behaviours</th>
                             <th>Carriers</th>
                         </tr>
@@ -146,6 +147,7 @@ $resultdatas = (!empty($resultsobj->getDataByUserId($userid))) ? $resultsobj->ge
                                 <td class="col-width"><?php echo htmlspecialchars($resultdata["personality_type"], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td class="col-width"><?php echo htmlspecialchars($resultdata["result_group"], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td class="col-width"><?php echo htmlspecialchars($resultdata["aspects"], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td class="col-width"><?php echo htmlspecialchars($resultdata["descriptor"], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td>
                                     <div class="description-box">
                                         <p><?php echo htmlspecialchars($resultdata["displayed_behaviours"], ENT_QUOTES, 'UTF-8'); ?></p>
@@ -166,11 +168,16 @@ $resultdatas = (!empty($resultsobj->getDataByUserId($userid))) ? $resultsobj->ge
                         <a href="test.php"><button class="btn btn-custom">Retake Test</button></a>
                         <a href="share_result.php"><button class="btn btn-custom text-white btn-primary">Share Result</button></a>
                     </div>
+                    <div>
+                        <a href="../includes/export.php"><button class="btn btn-custom text-white btn-success">Export Result to Excel</button></a>
+                    </div>
+
                     <!-- Right-aligned Button -->
                     <div>
                         <a href="chart.php"><button class="btn btn-custom">Show Graph</button></a>
                         <a href="sub-types.php"><button class="btn btn-custom text-white btn-primary">See More Personalities</button></a>
                     </div>
+
                 </div>
             <?php else: ?>
                 <a href="test.php"><button class="btn btn-custom bg-color">Take Test</button></a>
@@ -180,7 +187,9 @@ $resultdatas = (!empty($resultsobj->getDataByUserId($userid))) ? $resultsobj->ge
     <!-- footer -->
     <footer class="footer mt-auto">
         <div class="container">
-            &copy; 2025 Keirsey Temperament Test. All Rights Reserved.
+            <?php
+            include 'footer.php';
+            ?>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

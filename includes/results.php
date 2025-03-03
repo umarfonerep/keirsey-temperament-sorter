@@ -41,7 +41,7 @@ class Results
     {
         $data = [];
 
-        $query = "SELECT u.username, r.personality_type, d.result_group, d.aspects 
+        $query = "SELECT u.id, u.organization_name, u.username, r.personality_type, d.result_group, d.aspects , d.descriptor,d.careers,d.displayed_behaviours
               FROM users u 
               JOIN results r ON u.id = r.user_id
               JOIN data d ON r.personality_type = d.personality_type
@@ -86,7 +86,7 @@ class Results
     {
         $traits = ['E' => 'I', 'S' => 'N', 'T' => 'F', 'J' => 'P'];
         $scores = array_fill_keys(array_merge(array_keys($traits), array_values($traits)), 0);
-        
+
         foreach ($responses_encode as $question => $value) {
             $questionNum = (int) filter_var($question, FILTER_SANITIZE_NUMBER_INT);
             $traitKeys = array_keys($traits);
@@ -96,8 +96,6 @@ class Results
             $value = (float) $value;
             $scores[$trait1] += $value;
             $scores[$trait2] += (1 - $value);
-            // var_dump($scores);
-            // die;
         }
         $personalityType = '';
         $personalityType .= $scores['E'] > $scores['I'] ? 'E' : 'I';

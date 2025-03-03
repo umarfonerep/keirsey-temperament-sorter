@@ -21,7 +21,7 @@ $resultsObj = new Results($conn);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userid = $_SESSION['user_id'];
-    
+
     $data = [];
     for ($i = 1; $i <= 70; $i++) {
         $data['q' . $i] = $_POST['q' . $i] ?? 0;
@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($responseObj->storeResponces($data, $userid)) {
         // Retrieve stored responses
         $responces_question = $responseObj->getReponces($userid);
-        $responses_encode = !empty($responces_question) && isset($responces_question[0]['question_responce']) 
-            ? json_decode($responces_question[0]['question_responce'], true) 
+        $responses_encode = !empty($responces_question) && isset($responces_question[0]['question_responce'])
+            ? json_decode($responces_question[0]['question_responce'], true)
             : [];
 
         // Process results only if responses exist
@@ -69,7 +69,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .form-select {
             width: 150px;
         }
-
     </style>
 </head>
 
@@ -87,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!-- Heading with Reset Button -->
             <div class="d-flex justify-content-between align-items-center">
-            <a href="dashboard.php" class="btn btn-outline-light">Back</a>
+                <a href="dashboard.php" class="btn btn-outline-light">Back</a>
                 <h1 class="fw-bold text-uppercase text-start mb-0 text-white">Keirsey Temperament Test</h1>
                 <button id="resetButton" class="btn btn-outline-light">Reset</button>
             </div>
@@ -119,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
 
-        
+
 
     </div>
     </div>

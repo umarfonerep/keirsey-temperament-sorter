@@ -7,9 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $loginInput = $_POST['email'];
   $password = $_POST['password'];
   if (empty($loginInput)) {
-    $inemail = "Email is required.";
-  } elseif (!filter_var($loginInput, FILTER_VALIDATE_EMAIL)) {
-    $inemail = "Invalid email format.";
+    $inemail = "Email or username is required.";
   } elseif (empty($password)) {
     $pas = "Password is required.";
   } else {
@@ -49,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="card-body p-5 text-center">
               <!-- Logo Section -->
               <div class="mb-4">
-                <a class="navbar-brand" href="dashboard.php"><img src="../assets/LOGO.png" alt="Logo" height="40"></a>
+                <img src="../assets/LOGO.png" alt="Logo" class="img-fluid" style="max-width: 150px;">
               </div>
 
               <div class="mb-md-5 mt-md-4 pb-5 ">
@@ -60,8 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endif; ?>
                 <form action="" method="POST">
                   <div data-mdb-input-init class="form-outline form-white mb-4 text-align">
-                    <label class="form-label" for="typeEmailX">Email</label>
-                    <input type="email" id="typeEmailX" class="form-control form-control-lg" name="email" value="" />
+                    <label class="form-label" for="typeEmailX">Email or username</label>
+                    <input type="text" id="typeEmailX" class="form-control form-control-lg" name="email" value="" />
                     <?php if (!empty($inemail)): ?>
                       <div class="error-message text-center text-danger text-red-50"><?php echo htmlspecialchars($inemail); ?></div>
                     <?php endif; ?>

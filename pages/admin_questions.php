@@ -3,7 +3,7 @@ session_start();
 require_once '../includes/db.php';
 require_once '../includes/question.php';
 require_once '../includes/auth.php';
- if (!isLoggedIn() || $_SESSION['role'] !== 'admin' ) {
+if (!isLoggedIn() || $_SESSION['role'] !== 'admin') {
     header("Location: ../pages/login.php");
     exit();
 }
@@ -22,15 +22,15 @@ $questions = $question->getAllQuestions();
     <title>Manage Questions</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../style.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
 
-<!-- Navbar -->
-<?php
-include 'navbar.php';
-?>
+    <!-- Navbar -->
+    <?php
+    include 'navbar.php';
+    ?>
 
     <!-- Questions Section -->
     <div class="container mt-5">
@@ -55,13 +55,13 @@ include 'navbar.php';
         </table>
 
     </div>
-</nav>
-<!-- Footer (Sticks to Bottom) -->
-<?php 
-include 'footer.php';
-?>
+    </nav>
+    <!-- Footer (Sticks to Bottom) -->
+    <?php
+    include 'footer.php';
+    ?>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

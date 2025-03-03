@@ -114,6 +114,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <span class="error" style="color: red;"><?php echo $uname; ?></span>
                                         <?php endif; ?>
                                     </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="form-label" for="signupEmail">Email*</label>
+                                        <input type="email" id="signupEmail" class="form-control form-control-lg input-lg" name="email" />
+                                        <?php if (!empty($inemail)): ?>
+                                            <span class="error" style="color: red;"><?php echo $inemail; ?></span>
+                                        <?php endif; ?>
+                                    </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label" for="signupFirstName">First Name</label>
                                         <input type="text" id="signupFirstName" class="form-control form-control-lg" name="first_name" />
@@ -125,22 +132,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <span class="error"></span>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label" for="signupPhone">Phone</label>
-                                        <input type="text" id="signupPhone" class="form-control form-control-lg" name="phone" />
-                                        <span class="error"></span>
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
                                         <label class="form-label" for="signupPhone">Organisation Name</label>
                                         <input type="text" id="signupPhone" class="form-control form-control-lg" name="organisation_name" />
                                         <span class="error"></span>
                                     </div>
-                                    <div class="col-6 mb-3">
-                                        <label class="form-label" for="signupEmail">Email*</label>
-                                        <input type="email" id="signupEmail" class="form-control form-control-lg input-lg" name="email" />
-                                        <?php if (!empty($inemail)): ?>
-                                            <span class="error" style="color: red;"><?php echo $inemail; ?></span>
-                                        <?php endif; ?>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label" for="signupPhone">Phone</label>
+                                        <input type="text" id="signupPhone" class="form-control form-control-lg" name="phone" />
+                                        <span class="error"></span>
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label class="form-label" for="signupPassword">Password*</label>

@@ -6,11 +6,11 @@ include '../includes/results.php';
 
 $message = "";
 $email = "";
-$user_id = $_SESSION['user_id']; 
+$user_id = $_SESSION['user_id'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $shareresultobj = new Results($conn);
-    if ($shareresultobj->shareResultLink($user_id,$email)) {
+    if ($shareresultobj->shareResultLink($user_id, $email)) {
         $_SESSION['message'] = "<div class='alert alert-success'>A share Result link has been sent to your email.</div>";
     } else {
         $_SESSION['message'] = "<div class='alert alert-danger'>Failed to send the share Result. Please try again.</div>";
@@ -43,10 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card text-white" style="border-radius: 1rem; background-color: #1E7AC2;">
                         <div class="card-body p-5 text-center">
-                            
+
                             <!-- Logo Section -->
                             <div class="mb-4">
-                            <a class="navbar-brand" href="dashboard.php"><img src="../assets/LOGO.png" alt="Logo" height="40"></a>
+                                <img src="../assets/LOGO.png" alt="Logo" class="img-fluid" style="max-width: 150px;">
                             </div>
 
                             <div class="mb-md-5 mt-md-4 pb-5">
@@ -83,4 +83,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

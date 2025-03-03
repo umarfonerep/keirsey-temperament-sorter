@@ -16,7 +16,7 @@ function registerUser($username, $first_name, $last_name, $phone, $organisation_
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $stmt = $conn->prepare("INSERT INTO users (username, email, password, first_name, last_name, phone, organization_name ) VALUES (?, ?, ?, ?, ?, ?, ?)");
     if ($stmt) {
-        $stmt->bind_param("sssssss", $username, $email, $hashedPassword, $first_name, $last_name, $phone,$organisation_name);
+        $stmt->bind_param("sssssss", $username, $email, $hashedPassword, $first_name, $last_name, $phone, $organisation_name);
         return $stmt->execute();
     } else {
         return false;
@@ -42,6 +42,21 @@ function loginUser($loginInput, $password, $conn)
     return false;
 }
 
+function deleteUser($userid, $conn)
+{
+    $query = "DELETE FROM users WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $userid);
+
+    if ($stmt->execute()) {
+        echo "User deleted successfully.";
+    } else {
+        echo "Error deleting user: " . $conn->error;
+    }
+
+    $stmt->close();
+}
+
 function sendPasswordResetLink($email, $mysqli)
 {
     $stmt = $mysqli->prepare("SELECT * FROM users WHERE email = ?");
@@ -57,7 +72,7 @@ function sendPasswordResetLink($email, $mysqli)
         $stmt = $mysqli->prepare("UPDATE users SET reset_token = ?, reset_token_expiry = ? WHERE email = ?");
         $stmt->bind_param("sss", $token, $expiry, $email);
         $stmt->execute();
-        $resetLink = "http://keirsey-temperament-sorter.test/pages/reset_password.php?token=$token";
+        $resetLink = "http://144.202.23.55/pages/reset_password.php?token=$token";
         $mail = new PHPMailer(true);
 
         try {
